@@ -1,0 +1,11 @@
+---
+title: "Research Articles"
+description: "Long-form technical research and empirical retrospectives."
+---
+
+<div class="publication-card">
+  <div class="meta">EMPIRICAL RETROSPECTIVE · 2 NOVEMBER 2026 · V0.5</div>
+  <h3><a href="articles/compact-domain-reranking/">Compact Models for Domain-Specific Reranking</a></h3>
+  <p>A narrative survey of reranker architectures, fine-tuning strategies and evaluation methodology, with proprietary-data aggregate experimental observations.</p>
+  <a href="articles/compact-domain-reranking/">Open article →</a>
+</div>

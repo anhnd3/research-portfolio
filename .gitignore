@@ -1,0 +1,10 @@
+_site/
+.quarto/
+_freeze/
+.Rproj.user/
+.DS_Store
+.ipynb_checkpoints/
+.env
+.env.*
+__pycache__/
+*.pyc

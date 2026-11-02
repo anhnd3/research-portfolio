@@ -1,0 +1,49 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "AnhND3 | Research Notes"
+  site-url: "https://anhnd3.github.io/research-portfolio/"
+  description: "Independent research notes on applied AI systems, model adaptation, retrieval, and engineering evaluation."
+  navbar:
+    title: "AN / Research"
+    background: "#101c2d"
+    foreground: "#f4f8ff"
+    left:
+      - text: "Research"
+        href: articles.qmd
+      - text: "Notes"
+        href: notes.qmd
+      - text: "About"
+        href: about.qmd
+    right:
+      - icon: github
+        aria-label: "GitHub repository"
+        href: "https://github.com/anhnd3/research-portfolio"
+  page-footer:
+    left: "© 2026 AnhND3 · Independent research notes"
+    right:
+      - text: "Publication policy"
+        href: policy.qmd
+      - text: "Source"
+        href: "https://github.com/anhnd3/research-portfolio"
+  search: true
+  open-graph: true
+  repo-url: "https://github.com/anhnd3/research-portfolio"
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    toc-depth: 3
+    smooth-scroll: true
+    anchor-sections: true
+    code-copy: true
+    mainfont: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+    monofont: "ui-monospace, SFMono-Regular, Consolas, monospace"
+    link-external-newwindow: true
+
+execute:
+  freeze: auto

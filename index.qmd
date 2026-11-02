@@ -1,0 +1,27 @@
+---
+title: "Research Notes"
+description: "Independent technical research in compact AI models, ranking, calibration and engineering evaluation."
+page-layout: full
+toc: false
+---
+
+<div class="home-hero">
+  <div class="eyebrow">Personal research portfolio</div>
+  <h1>AI systems, explored through experiments.</h1>
+  <p>Technical research notes on compact models, ranking systems, model adaptation, and rigorous empirical evaluation.</p>
+</div>
+
+## Featured research
+
+<div class="publication-card">
+  <div class="meta">02 NOV 2026 · EMPIRICAL RETROSPECTIVE · V0.5</div>
+  <h3><a href="articles/compact-domain-reranking/">Compact Models for Domain-Specific Reranking</a></h3>
+  <p>Architecture survey and experimental findings on compact rerankers, direct versus sequential fine-tuning, and why strong Hit@K can obscure gaps in multi-label completeness.</p>
+  <a class="stretched" href="articles/compact-domain-reranking/">Read the full article →</a>
+</div>
+
+## Research directions
+
+The current notes focus on model adaptation, semantic ranking, calibrated decisions, and the distinction between a promising benchmark number and evidence strong enough to inform engineering decisions.
+
+This is an independently maintained technical portfolio, not an open research lab. Questions and factual corrections are welcome through the [GitHub repository](https://github.com/anhnd3/research-portfolio); availability of underlying private data is not implied.

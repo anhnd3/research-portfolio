@@ -1,0 +1,13 @@
+---
+title: "About"
+---
+
+This is the personal technical research portfolio of **AnhND3**.
+
+The focus is practical investigation of AI models and systems: compact language models, relevance ranking, domain adaptation, calibration, evaluation design, and the software engineering trade-offs that determine whether a method is useful in practice.
+
+Articles distinguish published literature, empirical observations, and hypotheses. Some experimental settings involve proprietary data; these are not presented as fully reproducible public benchmarks.
+
+The portfolio is independently maintained. It does not represent an open research lab, a collaborative research program, or an official publication of any employer or institution.
+
+For source corrections and discussion, use the [GitHub repository](https://github.com/anhnd3/research-portfolio).
