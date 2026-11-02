@@ -14,9 +14,9 @@ toc: false
 ## Featured research
 
 <div class="publication-card">
-  <div class="meta">02 NOV 2026 · EMPIRICAL RETROSPECTIVE · V0.5</div>
+  <div class="meta">02 NOV 2026 · EMPIRICAL RETROSPECTIVE · V1.0</div>
   <h3><a href="articles/compact-domain-reranking/">Compact Models for Domain-Specific Reranking</a></h3>
-  <p>Architecture survey and experimental findings on compact rerankers, direct versus sequential fine-tuning, and why strong Hit@K can obscure gaps in multi-label completeness.</p>
+  <p>A technical retrospective on compact reranking architectures, pointwise/pairwise/listwise objectives, supervised adaptation, Jev-style readouts, and evidence on candidate-to-Top-K conversion.</p>
   <a class="stretched" href="articles/compact-domain-reranking/">Read the full article →</a>
 </div>
 

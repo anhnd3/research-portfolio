@@ -2,7 +2,7 @@
 title: "About"
 ---
 
-This is the personal technical research portfolio of **AnhND3**.
+This is the personal technical research portfolio of **Aiden**.
 
 The focus is practical investigation of AI models and systems: compact language models, relevance ranking, domain adaptation, calibration, evaluation design, and the software engineering trade-offs that determine whether a method is useful in practice.
 
