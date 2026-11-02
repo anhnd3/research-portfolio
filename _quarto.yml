@@ -9,7 +9,7 @@ website:
   site-url: "https://anhnd3.github.io/research-portfolio/"
   description: "Independent research notes on applied AI systems, model adaptation, retrieval, and engineering evaluation."
   navbar:
-    title: "AND / Research"
+    title: "AND / Research Portfolio"
     background: "#101c2d"
     foreground: "#f4f8ff"
     left:
