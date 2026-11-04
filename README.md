@@ -28,8 +28,8 @@ quarto render
 
 In **Settings → Pages → Build and deployment**, choose **GitHub Actions** as the source. A push to `main` triggers the workflow and deploys the `_site` output.
 
-## Experimental-data policy
+## Publication scope
 
-This public repository contains only material selected for publication. It intentionally does **not** contain proprietary datasets, internal source code, raw experiment traces, checkpoints, or confidential project metadata. Charts visualize the aggregate results of the corresponding published article. Experimental diagrams are illustrative, not new measurements.
+The repository contains the website sources and aggregate visuals of published research findings. Methodological boundaries and evaluation protocols are described within individual articles. Conceptual diagrams are illustrative, not new measurements.
 
 See [Publication Policy](policy.qmd). No open content/code license is granted implicitly.

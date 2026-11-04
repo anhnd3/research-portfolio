@@ -14,9 +14,9 @@ toc: false
 ## Featured research
 
 <div class="publication-card">
-  <div class="meta">02 NOV 2026 · EMPIRICAL RETROSPECTIVE · V1.1</div>
+  <div class="meta">04 NOV 2026 · EMPIRICAL RETROSPECTIVE · V1.2</div>
   <h3><a href="articles/compact-domain-reranking/">Compact Models for Domain-Specific Reranking</a></h3>
-  <p>A technical retrospective on compact reranking architectures, pointwise/pairwise/listwise objectives, supervised adaptation, Jev-style readouts, and evidence on candidate-to-Top-K conversion.</p>
+  <p>A technical retrospective on compact reranking architectures and learning objectives, with a matched five-configuration evaluation across 594 queries, cardinality-aware ranking metrics, and paired uncertainty estimates.</p>
   <a class="stretched" href="articles/compact-domain-reranking/">Read the full article →</a>
 </div>
 
@@ -24,4 +24,4 @@ toc: false
 
 The current notes focus on model adaptation, semantic ranking, calibrated decisions, and the distinction between a promising benchmark number and evidence strong enough to inform engineering decisions.
 
-This is an independently maintained technical portfolio, not an open research lab. Questions and factual corrections are welcome through the [GitHub repository](https://github.com/anhnd3/research-portfolio); availability of underlying private data is not implied.
+This is an independently maintained technical portfolio, not an open research lab. Questions and factual corrections are welcome through the [GitHub repository](https://github.com/anhnd3/research-portfolio).

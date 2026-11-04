@@ -6,7 +6,7 @@ This is the personal technical research portfolio of **Aiden**.
 
 The focus is practical investigation of AI models and systems: compact language models, relevance ranking, domain adaptation, calibration, evaluation design, and the software engineering trade-offs that determine whether a method is useful in practice.
 
-Articles distinguish published literature, empirical observations, and hypotheses. Some experimental settings involve proprietary data; these are not presented as fully reproducible public benchmarks.
+Articles distinguish published literature, measured observations, and research hypotheses. Findings are reported with their evaluation scope, experimental controls, and limitations.
 
 The portfolio is independently maintained. It does not represent an open research lab, a collaborative research program, or an official publication of any employer or institution.
 

@@ -4,8 +4,8 @@ description: "Long-form technical research and empirical retrospectives."
 ---
 
 <div class="publication-card">
-  <div class="meta">EMPIRICAL RETROSPECTIVE · 2 NOVEMBER 2026 · V1.1</div>
+  <div class="meta">EMPIRICAL RETROSPECTIVE · 4 NOVEMBER 2026 · V1.2</div>
   <h3><a href="articles/compact-domain-reranking/">Compact Models for Domain-Specific Reranking</a></h3>
-  <p>Aiden's first public research release: model architectures, ranking objectives, Qwen/Prism adaptation, cardinality-aware evaluation, and frozen-pipeline gold conversion evidence.</p>
+  <p>Aiden's updated research article comparing five frozen ranking configurations on 594 queries, with paired cluster-bootstrap intervals, gold-coverage analysis, and prospective decision-readout experiments.</p>
   <a href="articles/compact-domain-reranking/">Open article →</a>
 </div>

@@ -4,16 +4,16 @@ title: "Publication Policy"
 
 ## Evidence and reproducibility
 
-Published articles distinguish **source-reported model characteristics**, **experimental observations**, and **interpretations or hypotheses**. Unless expressly stated otherwise, results involving proprietary cohorts cannot be independently reproduced from this website.
+Published articles distinguish **source-reported model characteristics**, **experimental observations**, and **interpretations or hypotheses**. Results should be interpreted in the context of the stated cohort, scoring configuration, and evaluation protocol.
 
-Published charts are visualizations of reported aggregate metrics. They do not imply access to, or release of, underlying private data.
+Charts visualize reported aggregate metrics. Methodology, evidence boundaries, and uncertainty are described alongside the corresponding findings.
 
-## Data, source code, and rights
+## Research artifacts, source code, and rights
 
-Private queries, candidate content, project identifiers, repository metadata, checkpoints, internal logs, and confidential materials are not published. Code associated with a study may be made available separately only after an ownership and disclosure review.
+Additional research artifacts, source code, or checkpoints may be linked per publication when relevant and cleared for release. Website publication does not imply an open-source license.
 
 Publication does not imply authorization to reuse third-party materials or that the research represents an employer or institution.
 
 ## Corrections
 
-Factual corrections and technical questions can be raised via GitHub Issues. Any future GitHub Discussions space, if enabled, is for discussion; it does not imply public collaborative access to private experimental artifacts.
+Factual corrections and technical questions can be raised via GitHub Issues. Any future GitHub Discussions space, if enabled, is intended for technical discussion rather than an open research lab.
