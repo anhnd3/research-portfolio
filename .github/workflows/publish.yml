@@ -19,8 +19,14 @@ jobs:
         uses: actions/checkout@v4
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
+      - name: Generate social preview
+        run: |
+          python -m pip install --disable-pip-version-check 'Pillow>=11,<13'
+          python scripts/generate_social_image.py
       - name: Render site
         run: quarto render
+      - name: Validate SEO metadata and sitemap
+        run: python scripts/verify_sitemap.py
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
