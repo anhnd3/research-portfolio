@@ -14,9 +14,9 @@ toc: false
 ## Featured research
 
 <div class="publication-card">
-  <div class="meta">04 NOV 2026 · EMPIRICAL RETROSPECTIVE · V1.2</div>
+  <div class="meta">UPDATED 09 NOV 2026 · EMPIRICAL RETROSPECTIVE · V1.3</div>
   <h3><a href="articles/compact-domain-reranking/">Compact Models for Domain-Specific Reranking</a></h3>
-  <p>A technical retrospective on compact reranking architectures and learning objectives, with a matched five-configuration evaluation across 594 queries, cardinality-aware ranking metrics, and paired uncertainty estimates.</p>
+  <p>A technical retrospective on compact reranking architectures and objectives: 594-query Qwen/Prism fusion evaluation, matched-runtime listwise-plus-BCE versus grouped BCE, multi-label completeness, and exploratory adaptive Top-K.</p>
   <a class="stretched" href="articles/compact-domain-reranking/">Read the full article →</a>
 </div>
 
