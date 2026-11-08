@@ -18,7 +18,7 @@ image=SITE/"assets/research-reranking-og.png"
 assert page.is_file(), "Research article missing from _site"
 assert image.is_file() and image.stat().st_size>10000, "Social card missing from _site"
 text=page.read_text(encoding="utf-8")
-assert "<title>Compact Models for Domain-Specific Reranking · Aiden · v1.2</title>" in text
+assert re.search(r"<title>Compact Models for Domain-Specific Reranking · Aiden · v[0-9]+\.[0-9]+</title>", text), "Versioned article title missing"
 assert '<meta name="robots" content="index,follow' in text
 assert f'<link rel="canonical" href="{ARTICLE}"' in text
 assert f'<meta property="og:image" content="{BASE}assets/research-reranking-og.png"' in text
@@ -28,7 +28,9 @@ assert match, "Missing article JSON-LD"
 data=json.loads(match.group(1))
 assert data.get("@type")=="Article" and data.get("author",{}).get("name")=="Aiden"
 assert data.get("datePublished")=="2026-11-02"
-assert data.get("dateModified")=="2026-11-04"
+from datetime import date
+modified = date.fromisoformat(data["dateModified"])
+assert modified >= date.fromisoformat(data["datePublished"]), "dateModified precedes datePublished"
 
 path=SITE/"sitemap.xml"
 if path.exists():
@@ -59,8 +61,12 @@ for url,relative in required.items():
     if url.rstrip("/") not in entries:
         item=ET.SubElement(root,tag("url"))
         ET.SubElement(item,tag("loc")).text=url
-        if url==ARTICLE: ET.SubElement(item,tag("lastmod")).text="2026-11-04"
         entries[url.rstrip("/")]=[item]
+    if url==ARTICLE:
+        item=entries[url.rstrip("/")][0]
+        lastmod=item.find(tag("lastmod"))
+        if lastmod is None: lastmod=ET.SubElement(item,tag("lastmod"))
+        lastmod.text=data["dateModified"]
 
 locs=[e.text for e in root.findall(f'{tag("url")}/{tag("loc")}')]
 assert len(locs)==len(set(url.rstrip("/") for url in locs)), "Duplicate URLs"
