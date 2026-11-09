@@ -14,9 +14,9 @@ toc: false
 ## Featured research
 
 <div class="publication-card">
-  <div class="meta">UPDATED 09 NOV 2026 · EMPIRICAL RETROSPECTIVE · V1.3</div>
+  <div class="meta">UPDATED 09 NOV 2026 · EMPIRICAL RETROSPECTIVE · V1.4</div>
   <h3><a href="articles/compact-domain-reranking/">Compact Models for Domain-Specific Reranking</a></h3>
-  <p>A technical retrospective on compact reranking architectures and objectives: 594-query Qwen/Prism fusion evaluation, matched-runtime listwise-plus-BCE versus grouped BCE, multi-label completeness, and exploratory adaptive Top-K.</p>
+  <p>Two new raw Qwen3 rerankers compared directly with six historical native and fused ranking pipelines on the same 594-query candidate set. Includes statistical uncertainty, multi-label analysis, adaptive output depth and full technical appendices.</p>
   <a class="stretched" href="articles/compact-domain-reranking/">Read the full article →</a>
 </div>
 
