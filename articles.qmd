@@ -4,8 +4,8 @@ description: "Long-form technical research and empirical retrospectives."
 ---
 
 <div class="publication-card">
-  <div class="meta">EMPIRICAL RETROSPECTIVE · UPDATED 9 NOVEMBER 2026 · V1.4</div>
+  <div class="meta">EXPLORATORY EMPIRICAL STUDY · UPDATED 9 NOVEMBER 2026 · V1.5</div>
   <h3><a href="articles/compact-domain-reranking/">Compact Models for Domain-Specific Reranking</a></h3>
-  <p>A neural-first analysis of task-aligned Qwen3 reranking: two new raw adapters versus prior native/Qwen/Prism/Laya pipelines, with paired uncertainty, retained theoretical diagrams and research appendices.</p>
+  <p>A research-paper treatment of the shared BM25F candidate stage, eight ranking configurations and paired empirical evidence. Architecture landscape, pointwise/pairwise/listwise objectives, Jev/RLCD and original simulations remain part of the article.</p>
   <a href="articles/compact-domain-reranking/">Open article →</a>
 </div>
