@@ -14,9 +14,9 @@ toc: false
 ## Featured research
 
 <div class="publication-card">
-  <div class="meta">UPDATED 09 NOV 2026 · EMPIRICAL RETROSPECTIVE · V1.4</div>
+  <div class="meta">UPDATED 09 NOV 2026 · EXPLORATORY EMPIRICAL STUDY · V1.5</div>
   <h3><a href="articles/compact-domain-reranking/">Compact Models for Domain-Specific Reranking</a></h3>
-  <p>Two new raw Qwen3 rerankers compared directly with six historical native and fused ranking pipelines on the same 594-query candidate set. Includes statistical uncertainty, multi-label analysis, adaptive output depth and full technical appendices.</p>
+  <p>An empirical study of two task-aligned raw Qwen3 rerankers against six historical fused/native configurations on a shared BM25F-derived K100. Full reranking theory, paired uncertainty, multi-label findings and preserved visual demonstrations.</p>
   <a class="stretched" href="articles/compact-domain-reranking/">Read the full article →</a>
 </div>
 
