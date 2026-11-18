@@ -1,0 +1,442 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Compact Models for Domain-Specific Reranking · Aiden · v1.6</title>
+<meta name="robots" content="index,follow,max-image-preview:large"/><meta name="description" content="An interactive empirical survey of reranking. Task supervision and broader data improved Top-3/5 recovery, with little separation between tested losses."/>
+
+<meta name="author" content="Aiden"/>
+<link rel="canonical" href="https://anhnd3.github.io/research-portfolio/articles/compact-domain-reranking/"/>
+<meta property="og:type" content="article"/>
+<meta property="og:title" content="Compact Models for Domain-Specific Reranking · v1.6"/>
+<meta property="og:description" content="An interactive empirical survey of reranking. Task supervision and broader data improved Top-3/5 recovery, with little separation between tested losses."/>
+<meta property="og:url" content="https://anhnd3.github.io/research-portfolio/articles/compact-domain-reranking/"/>
+
+<meta property="og:site_name" content="Aiden Research Portfolio"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:image" content="https://anhnd3.github.io/research-portfolio/assets/research-reranking-og.png"/>
+<meta property="og:image:secure_url" content="https://anhnd3.github.io/research-portfolio/assets/research-reranking-og.png"/>
+<meta property="og:image:type" content="image/png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="Aiden research cover: Compact Models for Domain-Specific Reranking"/>
+<meta property="article:published_time" content="2026-11-02"/>
+<meta property="article:modified_time" content="2026-11-18"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Compact Models for Domain-Specific Reranking · Aiden"/>
+<meta name="twitter:description" content="An interactive empirical survey of reranking. Task supervision and broader data improved Top-3/5 recovery, with little separation between tested losses."/>
+<meta name="twitter:image" content="https://anhnd3.github.io/research-portfolio/assets/research-reranking-og.png"/>
+<meta name="twitter:image:alt" content="Aiden research: compact models for domain-specific reranking"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","@id":"https://anhnd3.github.io/research-portfolio/articles/compact-domain-reranking/#article","mainEntityOfPage":{"@type":"WebPage","@id":"https://anhnd3.github.io/research-portfolio/articles/compact-domain-reranking/"},"headline":"Compact Models for Domain-Specific Reranking","alternativeHeadline":"What Training Data and Objectives Change at Top-3 and Top-5","description":"An interactive empirical survey of reranking. Task supervision and broader data improved Top-3/5 recovery, with little separation between tested losses.","inLanguage":"en","datePublished":"2026-11-02","dateModified":"2026-11-18","author":{"@type":"Person","name":"Aiden","url":"https://anhnd3.github.io/research-portfolio/about.html"},"publisher":{"@type":"Person","name":"Aiden","url":"https://anhnd3.github.io/research-portfolio/about.html"},"image":{"@type":"ImageObject","url":"https://anhnd3.github.io/research-portfolio/assets/research-reranking-og.png","width":1200,"height":630},"isPartOf":{"@type":"WebSite","name":"Aiden Research Portfolio","url":"https://anhnd3.github.io/research-portfolio/"},"keywords":["compact rerankers","learning to rank","domain-specific reranking","pointwise","pairwise","listwise","multi-label ranking","Qwen3-Reranker","Top-3","Top-5","complete recovery"]}</script>
+<style>
+:root{color-scheme:light;--ink:#172e49;--sub:#536980;--blue:#1e59b8;--line:#e2eaf1;--soft:#edf4fb;--page:#f5f8fa}*{box-sizing:border-box}body{margin:0;color:var(--ink);background:var(--page);font:1rem/1.7 Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif}a{color:var(--blue);text-underline-offset:3px}a:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--blue);outline-offset:3px}.mast{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.85rem clamp(1rem,4vw,3rem);background:white;border-bottom:1px solid var(--line)}.brand{font-weight:800}.brand em{font-weight:450;color:var(--sub);font-style:normal}.mast a,.sidebar a{text-decoration:none}.mast a:hover,.sidebar a:hover{text-decoration:underline}.mast-end{display:flex;gap:1rem;font-size:.86rem}.version{font-size:.78rem;color:var(--sub)}.shell{max-width:1300px;margin:auto}.hero{padding:clamp(2rem,6vw,4.25rem) clamp(1.25rem,6vw,5rem);background:radial-gradient(ellipse at 80% 0,#e8f1fc,transparent 60%),#fff;border-bottom:1px solid var(--line)}.eyebrow{color:var(--blue);font-size:.75rem;font-weight:750;letter-spacing:.12em;text-transform:uppercase}h1{font-size:clamp(2.25rem,5.4vw,4.6rem);line-height:1.08;letter-spacing:-.055em;max-width:950px;margin:.25em 0}.subtitle{font-size:clamp(1.08rem,2vw,1.35rem);color:var(--sub);margin:.7em 0}.byline{color:var(--sub);font-size:.86rem;margin:1.25rem 0 0}.layout{display:grid;grid-template-columns:205px minmax(0,930px);gap:2rem;padding:2rem clamp(1rem,4vw,3rem)}.sidebar{align-self:start;position:sticky;top:1.2rem;font-size:.88rem}.sidebar a{display:block;padding:.3rem 0;color:var(--sub)}.article{min-width:0;background:white;border:1px solid var(--line);border-radius:10px;padding:clamp(1.15rem,4.5vw,3.75rem)}.abstract{background:var(--soft);border-left:3px solid var(--blue);padding:1rem 1.25rem}.abstract p:last-child{margin-bottom:0}h2{font-size:clamp(1.4rem,3vw,1.92rem);line-height:1.22;letter-spacing:-.03em;margin:2.1rem 0 .7rem}h3{line-height:1.35;font-size:1.14rem;margin:1.5rem 0 .65rem}p{margin:.65rem 0 1.03rem}sup a{font-size:.8em}.tablebox{overflow-x:auto;margin:1.15rem 0;border:1px solid var(--line);border-radius:7px}table{width:100%;min-width:545px;border-collapse:collapse;text-align:left;font-size:.89rem}caption{text-align:left;padding:.85rem 1rem;color:var(--sub);font-size:.86rem}th,td{padding:.7rem .85rem;border-bottom:1px solid var(--line);vertical-align:top}thead th{background:var(--soft);font-weight:750}tbody tr:last-child>*{border-bottom:0}.num{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}.primary{background:#f1f6fc}.note{color:var(--sub);font-size:.88rem}.objectives{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.65rem;margin:1.1rem 0}.objectives div{background:var(--soft);padding:.8rem;border-radius:6px}.objectives b{display:block}.objectives code{line-height:1.5;font-size:.88rem}.endline{border-top:1px solid var(--line);margin-top:2rem;padding-top:.8rem;color:var(--sub);font-size:.84rem}code{color:#204f86;overflow-wrap:anywhere}ol{padding-left:1.3rem}.related{font-size:.9rem;color:var(--sub)}@media(max-width:830px){.layout{display:block;padding-top:1rem}.sidebar{position:static;display:flex;flex-wrap:wrap;gap:.3rem .9rem;margin:0 0 1rem}.sidebar .eyebrow{width:100%}.mast{flex-wrap:wrap}}@media(max-width:520px){.objectives{grid-template-columns:1fr}.mast-end{flex-wrap:wrap;gap:.55rem}.hero{padding-top:1.7rem}.article{padding:1rem}}
+
+.explorer{border:1px solid #cbdcf0;border-radius:12px;background:linear-gradient(145deg,#eff6ff,#fff 72%);padding:clamp(.9rem,3vw,1.45rem);margin:1.5rem 0 2rem}.explorer h3{margin:.4rem 0 .65rem;font-size:clamp(1.12rem,2.3vw,1.4rem)}.explorer h4{margin:.15rem 0 .7rem;font-size:.96rem}.architecture-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:center;gap:.45rem;margin:1rem 0}.architecture-flow>div{height:100%;display:flex;flex-direction:column;padding:.75rem;border:1px solid #cbdcf0;border-radius:8px;background:white;font-size:.84rem}.architecture-flow>span{color:var(--blue);font-weight:700}.architecture-flow div span{color:var(--sub);font-size:.8rem}.controls{display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;margin:.45rem 0}.controls button{font-family:inherit;font-size:.82rem;font-weight:690;color:var(--ink);background:white;border:1px solid #b7cbe3;border-radius:7px;cursor:pointer;padding:.49rem .7rem;min-height:36px}.controls button:hover{background:#e5f0ff}.controls button[aria-pressed=true],.controls .action{color:white;background:#1c52a8;border-color:#1c52a8}.controls button[aria-pressed=true]:hover,.controls .action:hover{background:#154384}.controls button:focus-visible{outline:2px solid var(--blue);outline-offset:2px}.demo-board{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:.8rem}.demo-board>div,.metric-panel{padding:.85rem;background:white;border:1px solid var(--line);border-radius:8px;min-width:0}.demo-board p{font-size:.87rem}.candidate-list{display:flex;gap:.35rem;flex-wrap:wrap;min-height:2.4rem;align-content:start}.candidate-list span,.tag{border:1px solid var(--line);background:#f3f6f9;padding:.16rem .38rem;border-radius:5px;font-size:.74rem}.candidate-list .active{border-color:#abc4e8;background:#e7f1ff;color:#174484}.rank-list{padding:0;list-style:none;margin:.75rem 0;display:grid;gap:.27rem}.rank-list li{display:grid;grid-template-columns:1.4em 1fr auto;align-items:center;gap:.35rem;padding:.28rem .45rem;border:1px solid var(--line);border-radius:5px;background:#fff;font-size:.78rem;font-variant-numeric:tabular-nums}.rank-list li.shortlist{border-color:#b7cbe3;background:#eaf3ff}.rank-list b{min-width:0}.rank-list b small{display:inline-block;margin-left:.3em;font-size:.72em;color:var(--sub);font-weight:500}.metric-controls,.metric-panels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.6rem}.metric-panels[data-single=true]{grid-template-columns:minmax(0,1fr)}.control-label{font-size:.74rem;font-weight:750;text-transform:uppercase;letter-spacing:.09em;color:var(--sub)}.metric-cut{font-size:1.02rem;font-weight:780}.metric-value{display:flex;justify-content:space-between;align-items:baseline;gap:.35rem;margin:.6rem 0 .2rem;font-size:.78rem}.metric-value strong{font-size:1rem;font-variant-numeric:tabular-nums}.bar-track{height:.55rem;width:100%;border-radius:4px;background:#e9eff6;overflow:hidden}.bar-track i{display:block;height:100%;width:0;border-radius:4px;background:#6b84a2;transition:width .43s ease-out}.bar-track .expanded{background:#235fbf}.effect{display:block;margin-top:.75rem;font-size:.8rem;color:var(--blue);font-weight:700}.metric-panel .note{margin:.15rem 0 0}.related li{margin:.65rem 0}.related strong{color:var(--ink)}@media(max-width:650px){.demo-board,.metric-controls{grid-template-columns:1fr}.architecture-flow{gap:.28rem}.architecture-flow>div{padding:.45rem;font-size:.72rem}.architecture-flow div span{font-size:.68rem}}@media(max-width:420px){.metric-panels{grid-template-columns:1fr}.architecture-flow{grid-template-columns:1fr}.architecture-flow>span{text-align:center;line-height:1;transform:rotate(90deg)}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:0.01ms!important;transition-duration:0.01ms!important}}
+</style>
+</head><body>
+<header class="mast" role="banner">
+  <a class="brand" href="/research-portfolio/" aria-label="Research Portfolio — home">Aiden <em>/ Research Portfolio</em></a>
+  <nav class="mast-end" aria-label="Primary navigation">
+    <a href="/research-portfolio/articles.html">Research</a>
+    <a href="/research-portfolio/notes.html">Notes</a>
+    <a href="/research-portfolio/about.html">About</a>
+    <a href="https://github.com/anhnd3/research-portfolio" target="_blank" rel="noopener noreferrer">GitHub</a>
+  </nav>
+  <span class="version" aria-label="Article version 1.6">v1.6</span>
+</header>
+
+<div class="shell">
+<header class="hero">
+  <div class="eyebrow">Empirical survey · Learning to rank</div>
+  <h1>Compact Models for Domain-Specific Reranking</h1>
+  <p class="subtitle">What training data and objectives change at Top-3 and Top-5</p>
+  <p class="byline"><strong>Aiden</strong> · 18 November 2026 · v1.6</p>
+</header>
+<div class="layout">
+<nav class="sidebar" aria-label="Article outline">
+  <span class="eyebrow">Contents</span>
+  <a href="#paper-introduction">Why complete recovery matters</a>
+  <a href="#paper-architecture">Reranker architectures</a>
+  <a href="#paper-background">Pointwise, pairwise, listwise</a>
+  <a href="#demo-title">Interactive training demo</a>
+  <a href="#paper-experimental-design">How we compared the models</a>
+  <a href="#metric-lab">Explore the results</a>
+  <a href="#coverage-breakdown">Training coverage breakdown</a>
+  <a href="#other-experiments">Earlier backbones and training runs</a>
+  <a href="#paper-discussion">How to read the gains</a>
+  <a href="#paper-conclusion">What I would keep</a>
+  <a href="#references">References</a>
+</nav>
+<main class="article" id="article">
+<section class="abstract" aria-label="Research findings">
+  <div class="eyebrow">What the experiments found</div>
+  <p>Two findings stand out in this empirical survey. Grouped binary cross-entropy and listwise cross-entropy plus binary cross-entropy both improved complete recovery over an existing pointwise checkpoint. Their Complete@5 scores differed by just <strong>0.17 percentage points</strong>. In a separate comparison using the same composite loss, the checkpoint trained on more and broader data reached <strong>74.94% Complete@3</strong> and <strong>80.10% Complete@5</strong>, up 9.04 and 5.94 points over its predecessor on the same test queries. Recall improved for items with positives in the earlier training set and for items that gained positives in the expanded set. The expanded fit also took more optimizer updates, so the gain reflects the training changes taken together.</p>
+</section>
+
+<h2 id="paper-introduction">Why complete recovery matters</h2>
+<p>The task is to rank relevant items from an internal enterprise catalog given a short text query. Catalog details are withheld. A reviewer uses the shortlist to decide which items to inspect first. Each item has a profile with a name, a description and other attributes. A query can have several correct answers. Labels are mapped to canonical item identities so that different names for the same item count once.</p>
+<p>Consider a query with three relevant items, A, B and C. A Top-3 list of A, X and B puts a relevant item first and recovers two thirds of the set. A reader working from that shortlist still misses C. <strong>Complete@3</strong> asks whether the first three suggestions cover the query. <strong>Complete@5</strong> tests what two more suggestions buy. We use these depths to compare a quick first pass with a slightly longer review. Macro Recall measures partial recovery, and Hit@1 describes the first result.</p>
+
+<h2 id="paper-architecture">Three design choices that often get mixed up</h2>
+<p>When someone calls a model “listwise,” they may mean the input it reads, the loss it learns from, or the order it emits. Those are three different design choices. The easiest way to separate them is to follow one score from query text to the final shortlist.</p>
+<div class="tablebox" role="region" aria-label="Reranker design choices" tabindex="0"><table>
+<thead><tr><th scope="col">Choice</th><th scope="col">Typical options</th><th scope="col">What this study uses</th></tr></thead>
+<tbody><tr><th scope="row">What the model reads</th><td>A query and one candidate, a pair of candidates, or a slate of candidates in one context</td><td>One query and one item profile per forward pass</td></tr>
+<tr><th scope="row">What training rewards</th><td>Correct relevance labels, correct preferences, or a score distribution over a list</td><td>Historical pointwise supervision, grouped binary cross-entropy, or a composite listwise + binary objective</td></tr>
+<tr><th scope="row">How a score is read</th><td>A classifier head, an answer token, or a generated preference or ordering</td><td><code>logit(yes) − logit(no)</code> for each query–candidate pair</td></tr></tbody></table></div>
+<h3 id="model-families">From cross-encoders to candidate-aware rerankers</h3>
+<p>A cross-encoder reads the query and candidate together. In <em>Passage Re-ranking with BERT</em>, a classifier turns the combined representation into a relevance score. MonoT5 takes the same broad approach with a text-to-text model and reads a <code>true</code> or <code>false</code> answer. Qwen3-Reranker uses a decoder and a <code>yes</code>/<code>no</code> readout. The models differ in architecture and scoring head, but each can score candidates independently and sort the scores afterward.<sup><a href="#ref-bert">[4]</a> <a href="#ref-monot5">[5]</a> <a href="#ref-qwen">[2]</a> <a href="#ref-model-card">[6]</a></sup></p>
+<p>There are also designs where candidates interact during inference. Pairwise Ranking Prompting asks an LLM which of two candidates should rank higher. RankGPT generates an ordering from a list prompt. The compact jina-reranker-v3 reads candidates in the same context so their representations can interact before scoring. These approaches change what the model can observe when it makes a decision. A loss that compares independently produced Qwen scores during training leaves that inference interface unchanged.<sup><a href="#ref-prp">[7]</a> <a href="#ref-rankgpt">[8]</a> <a href="#ref-jina">[9]</a></sup></p>
+
+<h2 id="paper-background">Pointwise, pairwise and listwise on the same example</h2>
+<p>Pointwise, pairwise and listwise objectives differ in the supervision they apply to the same candidates.<sup><a href="#ref-ltr">[1]</a></sup></p>
+<div class="objectives" aria-label="Three ways to supervise the same candidates">
+  <div><b>Pointwise</b><p><code>A = relevant; X = irrelevant</code></p><p>Binary cross-entropy penalizes errors on each relevance label. Grouped binary cross-entropy organizes examples by query and still applies a binary target to each candidate.</p></div>
+  <div><b>Pairwise</b><p><code>A should rank above X</code></p><p>A preference loss penalizes an insufficient score gap between sampled positives and negatives. The training signal depends on which pairs the sampler supplies.</p></div>
+  <div><b>Listwise</b><p><code>Score A against the candidate group</code></p><p>Cross-entropy over a group rewards a higher relative score for the target positive. In the expanded fit, each group contains one positive and 15 negatives.</p></div>
+</div>
+<p>The composite objective combines listwise cross-entropy with binary cross-entropy. The listwise term compares scores inside each training group, while binary cross-entropy supplies per-candidate relevance supervision. Queries can have several correct items in evaluation. A group with one target positive cannot directly optimize whether all of them appear in the final Top-3.</p>
+<p>At inference, each evaluated Qwen3-Reranker-0.6B checkpoint scores one query–candidate pair at a time using the difference between its <code>yes</code> and <code>no</code> logits.<sup><a href="#ref-qwen">[2]</a></sup> The listwise training signal therefore operates over a group of independently computed scores. Pairwise learning provides a useful methodological comparison here. The Qwen comparisons have no matched pairwise-trained arm. A separate Laya pilot below tests a pairwise term.</p>
+
+<h3 id="loss-details">What each loss actually pushes up or down</h3>
+<p><strong>Pointwise.</strong> With score <code>s</code> and binary label <code>y</code>, BCE applies <code>−y log σ(s) − (1−y) log(1−σ(s))</code> to a candidate. Correctly raising the score of C helps even if B still loses to a distractor. Grouped BCE keeps examples from the same query together, which changes the supervision the sampler supplies, while the loss still sees individual binary labels.</p>
+<p><strong>Pairwise.</strong> RankNet is a classic example. The loss for a relevant candidate B and an irrelevant candidate X can be written as <code>−log σ(s<sub>B</sub> − s<sub>X</sub>)</code>. The same example updates both sides of the preference. Which negatives you sample matters: an easy negative that already scores well below B teaches less about a shortlist decision than X just above it. LambdaRank-style methods connect gradient weights to the impact of swaps on a ranking metric. Neither construction automatically optimizes full set recovery at a particular K.<sup><a href="#ref-ranknet">[10]</a> <a href="#ref-lambda">[11]</a></sup></p>
+<p><strong>Listwise.</strong> A group softmax makes the candidates compete for probability mass. For one target positive C, the loss is <code>−log softmax(s)<sub>C</sub></code>. ListNet compares score-induced and label-induced list distributions. ListMLE instead assigns likelihood to an ordered list. Our composite recipe uses the single-target group cross-entropy plus a binary term. The group identifies a target positive at training time. A query with several relevant items in evaluation still asks the model to place the full set near the top.<sup><a href="#ref-ltr">[1]</a> <a href="#ref-listmle">[12]</a></sup></p>
+<p>Reward-based reranking is a further option. Rank-R1 uses reinforcement learning to teach a reranker to reason over candidates. A reward built around Complete@3 would bring training closer to the metric, but it would be sparse when one missing candidate makes the whole set incomplete. This survey’s measured recipes use supervised learning.<sup><a href="#ref-rankr1">[13]</a></sup></p>
+<section class="explorer" aria-labelledby="demo-title">
+  <div class="eyebrow">Interactive walkthrough</div>
+  <h3 id="demo-title">Give the same candidates three different learning signals</h3>
+  <p class="note">Toy example. The demo computes a single illustrative update directly on scores. It does not run Qwen or reproduce its training.</p>
+  <div class="architecture-flow" aria-label="Scoring and training architecture">
+    <div><b>Inputs</b><span>Query + one item profile</span></div><span aria-hidden="true">→</span>
+    <div><b>Qwen3 reranker</b><span>One score per candidate</span></div><span aria-hidden="true">→</span>
+    <div><b>Two uses of the score</b><span>Apply a training loss or sort at inference</span></div>
+  </div>
+  <div class="controls" role="group" aria-label="Training objective">
+    <button type="button" data-objective="pointwise" aria-pressed="true">Pointwise</button>
+    <button type="button" data-objective="pairwise" aria-pressed="false">Pairwise</button>
+    <button type="button" data-objective="listwise" aria-pressed="false">Listwise</button>
+  </div>
+  <div class="demo-board">
+    <div><h4>Training view</h4><p id="demo-explainer"></p><div id="demo-input" class="candidate-list"></div><div class="controls">
+      <button type="button" id="demo-step" class="action">Play one update</button><button type="button" id="demo-reset">Reset scores</button>
+    </div></div>
+    <div><h4>Sorted scores</h4><div class="controls" role="group" aria-label="Highlighted shortlist depth">
+      <button type="button" data-demo-k="3" aria-pressed="true">Top-3</button><button type="button" data-demo-k="5" aria-pressed="false">Top-5</button>
+    </div><ol id="demo-order" class="rank-list"></ol><p id="demo-result" class="note" aria-live="polite"></p></div>
+  </div>
+  <noscript><p>Enable JavaScript to compare the updates. With the initial order A, X, B, Y, C, Top-3 recovers two of the three relevant items and Top-5 recovers all three.</p></noscript>
+</section>
+
+<h2 id="paper-experimental-design">How we compared the models</h2>
+<p>Each reranker starts with a <strong>frozen pool of up to 100 candidate items</strong>. Both main comparisons used lexical retrieval based on BM25F. Metadata supplied with each query narrowed which items were eligible before retrieval. The eligibility filter did not receive the relevance labels. Historical results below distinguish unrestricted catalog pools from metadata-filtered pools. Models within each comparison see the same candidates. We deduplicate by canonical item identity and retain relevant items missed by retrieval in the metric denominator.</p>
+<p><strong>Training recipe comparison.</strong> Table 1 uses 594 queries, including 97 with multiple relevant items. Its query format allowed a summary, a description and an optional auxiliary analysis field. The pool contains 714 of 753 gold labels (94.82%). Fifteen queries have more than three gold items, and four have more than five. The pointwise checkpoint was rescored using the same inputs as the grouped BCE and Listwise + BCE checkpoints. The original training-to-evaluation audit reported no exact query-identity overlap or near-duplicate links at its tested threshold.</p>
+<p><strong>Expanded training comparison.</strong> Table 2 uses 387 queries from the frozen test split, including 87 with multiple relevant items. Both checkpoints are evaluated on summary and description only. The pool contains 505 of 540 gold labels (93.52%). Seventeen queries have more than three gold items, and five have more than five. The <em>common unseen</em> filter excludes query groups used to fit either checkpoint or the historical fusion comparator, a ranking method that mixes a neural score with additional features. Both its neural fit and the fit of its feature weights are covered by the filter. The researchers had already inspected both evaluation cohorts.</p>
+<p>The earlier checkpoint in Table 2 is the Listwise + BCE checkpoint in Table 1. Both use <strong>listwise cross-entropy + 0.25 × grouped binary cross-entropy</strong>. The expanded Qwen3-Reranker-0.6B checkpoint starts from the original base and uses LoRA for two epochs on the training split of a frozen 60/20/20 dataset.<sup><a href="#ref-lora">[3]</a></sup> The earlier fit took <strong>758 optimizer updates</strong> and the expanded fit took <strong>2,046</strong>. On the same 779-item catalog, the earlier fit saw 213 items as positives (27.34%) and the expanded fit saw 566 (72.66%).</p>
+<h3 id="query-format-audit">What information did the queries contain?</h3>
+<p>The earlier training schema allowed the auxiliary analysis field, but it was blank for every training query. The prompt serializer omits blank fields, so the actual training query text for both checkpoints consisted of a summary and description. Both checkpoints also receive those fields in Table 2. The audit therefore gives no evidence that removing populated analysis text disadvantaged the earlier checkpoint relative to its own training inputs.</p>
+<p>In Table 1, the auxiliary field was populated for <strong>16 of 594 queries</strong>. A conservative text check for exact item identifiers and unambiguous aliases found that <strong>six queries explicitly named at least one relevant item in that field</strong>. These are source-text mentions, which may make some queries easier. The field was shared across arms, so the comparison measures all three recipes with that information available. It does not estimate the effect of removing the field, and exact matching can miss indirect clues.</p>
+<p>The frozen Table 2 cohort does not contain the auxiliary field. Matching records in the earlier snapshot provide nonempty text for only six of the 387 queries. That partial archive would not support a matched full-cohort comparison with and without the field.</p>
+
+<h2 id="paper-results">What the model scores recover at Top-3 and Top-5</h2>
+<section class="explorer" aria-labelledby="metric-lab">
+  <div class="eyebrow">Results explorer</div><h3 id="metric-lab">What changes when the shortlist grows?</h3>
+  <p>Compare the two Qwen3-Reranker-0.6B checkpoints on the same expanded-study candidates. Use the multi-item slice to see how the overall averages can hide incomplete sets.</p>
+  <div class="metric-controls">
+    <div><span class="control-label">Metric</span><div class="controls" role="group" aria-label="Ranking metric"><button type="button" data-stat="complete_at_" aria-pressed="true">Complete</button><button type="button" data-stat="macro_recall_at_" aria-pressed="false">Macro Recall</button><button type="button" data-stat="hit" aria-pressed="false">Hit</button></div></div>
+    <div><span class="control-label">Queries</span><div class="controls" role="group" aria-label="Evaluation group"><button type="button" data-slice="common_unseen" aria-pressed="true">All common unseen</button><button type="button" data-slice="common_unseen_multi_item" aria-pressed="false">Multi-item</button></div></div>
+  </div>
+  <div class="controls" role="group" aria-label="Top-K view">
+    <button type="button" data-depth="both" aria-pressed="true">Top-3 and Top-5</button>
+    <button type="button" data-depth="3" aria-pressed="false">Top-3</button>
+    <button type="button" data-depth="5" aria-pressed="false">Top-5</button>
+  </div>
+  <p class="note" id="metric-definition" aria-live="polite"></p>
+  <div class="metric-panels" id="metric-panels"></div>
+  <noscript><p>Table 2 includes Complete and Macro Recall at Top-3 and Top-5, plus Hit@1. Enable JavaScript to explore Hit@3 and Hit@5.</p></noscript>
+</section>
+<h3 id="study-b-objectives">Which training recipes help?</h3>
+<div class="tablebox" role="region" aria-label="Training recipe comparison" tabindex="0">
+<table>
+<caption>Table 1. Model-only ranking on 594 matching queries, including 97 multi-item queries. Complete@K requires every gold item in the first K results.</caption>
+<thead><tr><th scope="col">Qwen3-Reranker-0.6B training recipe</th><th scope="col" class="num">Complete@3</th><th scope="col" class="num">Complete@5</th><th scope="col" class="num">Hit@1</th></tr></thead>
+<tbody>
+<tr><th scope="row">Pointwise binary relevance baseline</th><td class="num">70.37%</td><td class="num">77.10%</td><td class="num">65.82%</td></tr>
+<tr><th scope="row">Grouped binary cross-entropy</th><td class="num">77.10%</td><td class="num">83.33%</td><td class="num">69.02%</td></tr>
+<tr class="primary"><th scope="row">Listwise cross-entropy + grouped binary cross-entropy</th><td class="num"><strong>77.78%</strong></td><td class="num"><strong>83.50%</strong></td><td class="num">69.70%</td></tr>
+</tbody></table></div>
+<p>Both recipes built around task-specific groups improved Complete@3 by more than six points over the pointwise baseline. At Top-5, grouped BCE gained <strong>6.23 points</strong> (paired 95% CI +3.99 to +8.62), and Listwise + BCE gained <strong>6.40 points</strong> (+3.90 to +9.17). Their head-to-head difference was 0.17 points (−1.72 to +2.00). The intervals come from 2,000 paired bootstrap draws over duplicate groups.</p>
+<p>The multi-item slice makes that distinction clearer. The pointwise checkpoint recovered all relevant items at Top-5 for <strong>50 of 97 queries (51.55%)</strong>. Listwise + BCE recovered 52 (53.61%), and grouped BCE recovered 54 (55.67%). Most of the measured gains in the overall comparison came with task-oriented training recipes. The multi-item results show little separation between the two objectives.</p>
+
+<h3 id="expanded-study">What changed when we broadened training coverage?</h3>
+<div class="tablebox" role="region" aria-label="Expanded training matched model comparison" tabindex="0">
+<table>
+<caption>Table 2. Matched neural rankings on 387 common-unseen queries, including 87 multi-item queries. Differences are expanded minus earlier, in percentage points.</caption>
+<thead><tr><th scope="col">Measure</th><th scope="col" class="num">Earlier Qwen3<br>Listwise + BCE</th><th scope="col" class="num">Expanded Qwen3<br>Listwise + BCE</th><th scope="col" class="num">Difference [95% CI]</th></tr></thead>
+<tbody>
+<tr class="primary"><th scope="row">Complete@3</th><td class="num">65.89%</td><td class="num"><strong>74.94%</strong></td><td class="num">+9.04 [5.69, 12.53]</td></tr>
+<tr class="primary"><th scope="row">Complete@5</th><td class="num">74.16%</td><td class="num"><strong>80.10%</strong></td><td class="num">+5.94 [3.10, 9.02]</td></tr>
+<tr><th scope="row">Macro Recall@3</th><td class="num">71.15%</td><td class="num">80.19%</td><td class="num">+9.04 [5.84, 12.32]</td></tr>
+<tr><th scope="row">Macro Recall@5</th><td class="num">78.87%</td><td class="num">84.87%</td><td class="num">+5.99 [3.38, 8.82]</td></tr>
+<tr><th scope="row">Multi-item Complete@3</th><td class="num">25.29%</td><td class="num">36.78%</td><td class="num">+11.49 [4.35, 19.32]</td></tr>
+<tr><th scope="row">Multi-item Complete@5</th><td class="num">39.08%</td><td class="num">49.43%</td><td class="num">+10.34 [3.16, 18.18]</td></tr>
+<tr><th scope="row">Hit@1</th><td class="num">61.24%</td><td class="num">73.90%</td><td class="num">+12.66 [8.27, 17.22]</td></tr>
+</tbody></table></div>
+<p>On the 87 multi-item queries, the expanded checkpoint completed <strong>10 additional queries at Top-3</strong> (22 → 32) and <strong>nine at Top-5</strong> (34 → 43). The larger gain at Top-3 matters when a reader stops after the first few suggestions. Top-5 still recovers more of the full set, with fewer than half of the multi-item queries complete. Hit@1 rose by <strong>12.66 percentage points</strong>, the largest improvement in Table 2. The first result got better as well as the shortlist. Table 2 uses 5,000 paired bootstrap draws clustered by duplicate component.</p>
+<p class="note"><strong>Why Complete@3 for the earlier checkpoint is 77.78% in Table 1 and 65.89% in Table 2.</strong> The cohorts, candidate pools and permitted query fields differ. The expanded subset has a larger multi-item share (22.48% versus 16.33%), a larger share of queries with more than three gold labels (4.39% versus 2.53%), and lower candidate gold coverage. These are plausible contributors to the lower Complete@3, but the study does not estimate how much each factor explains. The score gap itself does not establish training exposure in Table 1.</p>
+
+<h3 id="coverage-breakdown">Which relevant items did the new model recover?</h3>
+<p>To separate previously supervised items from newly supervised ones, we split the 540 gold query–item labels in Table 2 by positive membership in the training groups. We score each label against the same matched rankings, including labels absent from the candidate pool. This is label-level micro recall within each group.</p>
+<p><strong>All gold items in this evaluated subset appeared as positives in the expanded training set.</strong> “Common unseen” refers to the query and its duplicate group. The comparison does not measure zero-shot recovery of items absent as positives from the expanded training set.</p>
+<div class="tablebox" role="region" aria-label="Gold label recall by training coverage" tabindex="0"><table>
+<caption>Recall by whether the gold item appeared as a positive in the earlier training set.</caption>
+<thead><tr><th scope="col">Gold item group</th><th scope="col" class="num">Labels</th><th scope="col" class="num">Recall@3<br>Earlier → expanded</th><th scope="col" class="num">Recall@5<br>Earlier → expanded</th></tr></thead>
+<tbody>
+<tr><th scope="row">Positive in earlier training</th><td class="num">147</td><td class="num">67.35% → <strong>75.51%</strong></td><td class="num">76.19% → <strong>82.99%</strong></td></tr>
+<tr><th scope="row">Positive only in expanded training</th><td class="num">393</td><td class="num">61.58% → <strong>71.25%</strong></td><td class="num">70.99% → <strong>77.86%</strong></td></tr>
+</tbody></table></div>
+<p>Top-3 recall gained <strong>9.67 points</strong> for items newly represented as positives and <strong>8.16 points</strong> for items already represented. The earlier checkpoint already recovered 61.58% of the former group at Top-3. At that cutoff the expanded checkpoint recovered a net 50 more gold labels, 38 in the newly supervised group and 12 in the earlier-positive group. The newly supervised group is larger. The similar rate gains are consistent with a broader improvement from more training data and more updates.</p>
+
+<h2 id="other-experiments">What the other runs taught us</h2>
+<p>The expanded checkpoint is the last comparison in this survey. Earlier runs tested different questions: whether an off-the-shelf reranker was enough, whether document adaptation helped before task training, and whether pairwise supervision helped a specialized encoder. Each comparison has its own data and candidate setting. Read the differences within each table.</p>
+
+<h3 id="original-backbone-results">Start with the pretrained backbone</h3>
+<p>On a shared unrestricted Top-100 candidate pool, we evaluated four released checkpoints before task fine-tuning. BGE uses a classification score, Qwen uses an answer-token margin, and the Jina model scores with multiple candidates in context. The Jina comparison used the model’s block aggregation with up to 16 documents per block so that it could score the same 100 candidates within the hardware budget.<sup><a href="#ref-bge">[17]</a> <a href="#ref-jina35">[18]</a></sup></p>
+<div class="tablebox" role="region" aria-label="Pretrained backbone results" tabindex="0"><table>
+<caption>Table 3. Pretrained checkpoints on the shared development candidate pool, ordered by Complete@3.</caption>
+<thead><tr><th scope="col">Pretrained model</th><th scope="col">Scoring input</th><th scope="col" class="num">Complete@3</th><th scope="col" class="num">Complete@5</th></tr></thead>
+<tbody>
+<tr><th scope="row">Qwen3-Reranker-4B</th><td>One candidate at a time</td><td class="num">55.03%</td><td class="num">59.72%</td></tr>
+<tr><th scope="row">Qwen3-Reranker-0.6B</th><td>One candidate at a time</td><td class="num">47.74%</td><td class="num">56.08%</td></tr>
+<tr><th scope="row">jina-reranker-v3.5</th><td>Candidate blocks</td><td class="num">46.18%</td><td class="num">51.91%</td></tr>
+<tr><th scope="row">BGE reranker v2 M3</th><td>One candidate at a time</td><td class="num">25.69%</td><td class="num">33.33%</td></tr>
+</tbody></table></div>
+<p>The larger Qwen checkpoint recovered more complete sets at both cutoffs in this run. The spread across the released checkpoints also reflects their pretraining, scoring interfaces and input formats. It describes which checkpoints worked better on this development pool, rather than isolating the effects of model size or candidate-aware attention.</p>
+
+<h3 id="qwen-adaptation-results">Does a document adaptation stage pay off?</h3>
+<p>On an earlier five-fold development protocol, Qwen3-Reranker-0.6B was fine-tuned either directly on query–item relevance or first adapted using reference documents and then fine-tuned on the relevance task. The latter approach asks whether the model benefits from learning domain vocabulary and item descriptions before it sees labeled queries.</p>
+<div class="tablebox" role="region" aria-label="Qwen adaptation results" tabindex="0"><table>
+<caption>Table 4. Earlier unrestricted Top-100 development protocol. Trained models are evaluated out of fold.</caption>
+<thead><tr><th scope="col">Qwen3-Reranker-0.6B recipe</th><th scope="col" class="num">Complete@3</th><th scope="col" class="num">Complete@5</th><th scope="col" class="num">Hit@1</th></tr></thead>
+<tbody>
+<tr><th scope="row">Original pretrained checkpoint</th><td class="num">47.74%</td><td class="num">55.90%</td><td class="num">42.36%</td></tr>
+<tr><th scope="row">Direct relevance fine-tuning</th><td class="num">58.51%</td><td class="num">62.50%</td><td class="num">54.69%</td></tr>
+<tr><th scope="row">Document adaptation, then relevance fine-tuning</th><td class="num">58.85%</td><td class="num">63.72%</td><td class="num">54.51%</td></tr>
+</tbody></table></div>
+<p>Most of the improvement came with task supervision. The extra document stage added only 0.34 points at Complete@3 and 1.22 at Complete@5. Hit@1 was slightly lower. The 55.90% pretrained Complete@5 here is from the adaptation study’s frozen evaluation snapshot. Table 3’s 56.08% is a separate pretrained benchmark result. Read each adaptation gain against the baseline in its own table.</p>
+
+<h3 id="prism-adaptation-results">Document adaptation did not consistently improve the result</h3>
+<p>Prism uses a different backbone and supports a richer native output interface. For this experiment, we ran Prism-Qwen3.5-Reranker-0.8B in relevance-only mode and used its binary score. The same direct and sequential recipes were evaluated on a common, metadata-filtered Top-100 development pool. This study reported metrics through Top-3.<sup><a href="#ref-prism">[19]</a></sup></p>
+<div class="tablebox" role="region" aria-label="Prism adaptation results" tabindex="0"><table>
+<caption>Table 5. Development comparison on a metadata-filtered pool. Trained checkpoint results are out of fold.</caption>
+<thead><tr><th scope="col">Model and training recipe</th><th scope="col" class="num">Complete@3</th><th scope="col" class="num">Macro Recall@3</th><th scope="col" class="num">Hit@1</th></tr></thead>
+<tbody>
+<tr><th scope="row">Prism-Qwen3.5-Reranker-0.8B, original</th><td class="num">59.20%</td><td class="num">63.81%</td><td class="num">50.69%</td></tr>
+<tr class="primary"><th scope="row">Prism-Qwen3.5-Reranker-0.8B, direct relevance fine-tuning</th><td class="num">70.49%</td><td class="num">75.31%</td><td class="num">66.15%</td></tr>
+<tr><th scope="row">Prism-Qwen3.5-Reranker-0.8B, document adaptation then relevance fine-tuning</th><td class="num">67.71%</td><td class="num">73.02%</td><td class="num">64.06%</td></tr>
+</tbody></table></div>
+<p>Prism’s direct recipe scored 2.78 points higher at Complete@3 than its sequential recipe on this pool. The earlier Qwen comparison showed a small gain in the other direction on a different pool. These comparisons have no paired intervals for this contrast and do not establish a backbone effect. They show no consistent observed benefit from adding the document stage.</p>
+
+<h3 id="laya-pairwise-pilot">Where we actually tried a pairwise loss</h3>
+<p>A separate discovery fold used Laya Multilingual, a compact encoder, to compare grouped binary cross-entropy with and without an added pairwise logistic term. The replay below sorts by the saved model logits using the same candidates within each comparison. It measures <strong>micro recall of relevant catalog records</strong>, the share of all labeled items recovered, including those outside the candidate pool. That metric differs from the canonical-item Complete measures above.<sup><a href="#ref-laya">[20]</a></sup></p>
+<div class="tablebox" role="region" aria-label="Laya pairwise training pilot" tabindex="0"><table>
+<caption>Table 6. Laya Multilingual on one development fold. The columns compare binary supervision and binary supervision with a pairwise term.</caption>
+<thead><tr><th scope="col">Training inputs</th><th scope="col" class="num">BCE<br>Micro Recall@3 / @5</th><th scope="col" class="num">BCE + pairwise<br>Micro Recall@3 / @5</th></tr></thead>
+<tbody>
+<tr><th scope="row">Indexed item fields</th><td class="num">32.43% / 37.84%</td><td class="num">28.83% / 36.04%</td></tr>
+<tr><th scope="row">Document adaptation, then indexed fields</th><td class="num">26.13% / 35.14%</td><td class="num">25.23% / 36.94%</td></tr>
+<tr><th scope="row">Direct reference-text inputs</th><td class="num">34.23% / 41.44%</td><td class="num">33.33% / 40.54%</td></tr>
+<tr><th scope="row">Document adaptation, then direct document inputs</th><td class="num">30.63% / 38.74%</td><td class="num">36.04% / 42.34%</td></tr>
+</tbody></table></div>
+<p>There was no consistent improvement from adding the pairwise term. On this one fold, the cutoffs moved by only one to six recovered labels out of 111, depending on the input setting and depth. The pilot is too small to pin those differences on the loss.</p>
+
+<h2 id="paper-discussion">How to read the gains</h2>
+<p>The experiments support investing in task supervision and more varied training data. In Table 1, both query-grouped recipes improved over the historical pointwise checkpoint, with little separation between the two losses. In Table 2, the checkpoint trained on expanded data improved at both cutoffs under the same composite loss. The two experiments use different cohorts and baselines. Their percentage-point gains cannot rank the value of adding data against changing the objective.</p>
+<p>An earlier sensitivity check found that a separate fusion layer could improve deeper coverage. For the grouped BCE checkpoint, Complete@5 rose from 83.33% to 85.19% with fusion, while Hit@1 fell from 69.02% to 63.47%. The present tables use model scores to compare training recipes and checkpoints. If the decision is which ranking policy to use when Complete@5 matters most, the historical comparison favors keeping fusion as a candidate for evaluation.</p>
+<p>Complete@3 and Complete@5 count a query as complete only when every labeled item appears within the cutoff. A missing gold candidate or a gold set larger than the cutoff makes that impossible. The reference labels are linked to verified catalog identities. They have not been exhaustively adjudicated for each query. The paired intervals describe differences on the observed cohorts and do not account for the selection of experiments reported here.</p>
+
+<h3 id="readout-calibration">A ranking score also has a scale</h3>
+<p>The yes/no token margin supplies an ordering. It does not provide a validated probability that an item belongs in the answer. A monotonic transform, such as dividing by a positive temperature, can change the numeric confidence without moving any candidate in the ranking. If the task later becomes choosing how many results to return, it needs a separate calibration dataset and a measure of the costs of missing an item versus suggesting an extra one.<sup><a href="#ref-calibration">[14]</a></sup></p>
+<p>Decision readout work also gives a way to frame a future comparison. Nokia Applied Research’s AnyJev project explores reading typed decisions from language models. A controlled reranking comparison could keep the backbone and training data fixed, then evaluate the existing token margin against a supervised hidden-state relevance head. That would test what the readout contributes under the same Top-3/5 metrics. Neither the decision-head comparison nor cutoff calibration is part of the reported results.<sup><a href="#ref-jev">[15]</a></sup></p>
+<p>For transfer across tasks, a benchmark such as BEIR offers a useful complementary view across retrieval domains. Our tests answer a narrower question about complete recovery for catalog relevance labels. External rankings or leaderboard scores do not establish which model would recover all relevant items in this domain.<sup><a href="#ref-beir">[16]</a></sup></p>
+
+<h2 id="paper-conclusion">What I would keep from this study</h2>
+<p>I would keep <strong>Qwen3-Reranker-0.6B fine-tuned on the expanded dataset with listwise cross-entropy and grouped binary cross-entropy</strong> as the model-only research reference. It is the checkpoint we evaluated on the expanded data. There is no Grouped BCE checkpoint trained on that dataset. The missing experiment is to train <strong>Grouped BCE on the same expanded data</strong>, holding the base model, examples, sampling and optimizer schedule fixed, then compare the two objectives on matched candidates. Complete@3 and Complete@5 on multi-item queries would show which recipe better recovers the full set.</p>
+
+<h2 id="references">References</h2>
+<ol class="related">
+<li id="ref-ltr">Cao, Z., Qin, T., Liu, T.-Y., Tsai, M.-F. and Li, H. (2007). <a href="https://www.microsoft.com/en-us/research/publication/learning-to-rank-from-pairwise-approach-to-listwise-approach/">Learning to Rank: From Pairwise Approach to Listwise Approach</a>.</li>
+<li id="ref-qwen">Zhang, Y. et al. (2025). <a href="https://arxiv.org/abs/2506.05176">Qwen3 Embedding: Advancing Text Embedding and Reranking Through Foundation Models</a>.</li>
+<li id="ref-lora">Hu, E. J. et al. (2021). <a href="https://arxiv.org/abs/2106.09685">LoRA: Low-Rank Adaptation of Large Language Models</a>.</li>
+<li id="ref-bert">Nogueira, R. and Cho, K. (2019). <a href="https://arxiv.org/abs/1901.04085">Passage Re-ranking with BERT</a>.</li>
+<li id="ref-monot5">Nogueira, R., Jiang, Z., Pradeep, R. and Lin, J. (2020). <a href="https://aclanthology.org/2020.findings-emnlp.63/">Document Ranking with a Pretrained Sequence-to-Sequence Model</a>.</li>
+<li id="ref-model-card">Qwen Team. <a href="https://huggingface.co/Qwen/Qwen3-Reranker-0.6B">Qwen3-Reranker-0.6B model card and scoring example</a>.</li>
+<li id="ref-prp">Qin, Z. et al. (2024). <a href="https://aclanthology.org/2024.findings-naacl.97/">Large Language Models are Effective Text Rankers with Pairwise Ranking Prompting</a>.</li>
+<li id="ref-rankgpt">Sun, W. et al. (2023). <a href="https://arxiv.org/abs/2304.09542">Is ChatGPT Good at Search? Investigating Large Language Models as Re-Ranking Agents</a>.</li>
+<li id="ref-jina">Wang, F., Li, Y. and Xiao, H. (2025). <a href="https://arxiv.org/abs/2509.25085">jina-reranker-v3: Last but Not Late Interaction for Listwise Document Reranking</a>.</li>
+<li id="ref-ranknet">Burges, C. J. C. et al. (2005). <a href="https://www.microsoft.com/en-us/research/publication/learning-to-rank-using-gradient-descent/">Learning to Rank using Gradient Descent</a>.</li>
+<li id="ref-lambda">Burges, C. J. C. (2010). <a href="https://www.microsoft.com/en-us/research/wp-content/uploads/2016/02/MSR-TR-2010-82.pdf">From RankNet to LambdaRank to LambdaMART: An Overview</a>.</li>
+<li id="ref-listmle">Xia, F., Liu, T.-Y., Wang, J., Zhang, W. and Li, H. (2008). <a href="https://doi.org/10.1145/1390156.1390306">Listwise Approach to Learning to Rank: Theory and Algorithm</a>.</li>
+<li id="ref-rankr1">Zhuang, S. et al. (2025). <a href="https://arxiv.org/abs/2503.06034">Rank-R1: Enhancing Reasoning in LLM-based Document Rerankers via Reinforcement Learning</a>.</li>
+<li id="ref-calibration">Guo, C., Pleiss, G., Sun, Y. and Weinberger, K. Q. (2017). <a href="https://proceedings.mlr.press/v70/guo17a.html">On Calibration of Modern Neural Networks</a>.</li>
+<li id="ref-jev">Nokia Applied Research. <a href="https://github.com/nokia-applied-research/AnyJev">AnyJev</a>.</li>
+<li id="ref-beir">Thakur, N. et al. (2021). <a href="https://arxiv.org/abs/2104.08663">BEIR: A Heterogenous Benchmark for Zero-shot Evaluation of Information Retrieval Models</a>.</li>
+<li id="ref-bge">BAAI. <a href="https://huggingface.co/BAAI/bge-reranker-v2-m3">BGE reranker v2 M3 model card</a>.</li>
+<li id="ref-jina35">Nasika, C. et al. (2026). <a href="https://arxiv.org/abs/2607.18152">jina-reranker-v3.5: An Efficient Listwise Reranker with Hybrid Attention and Self-Distillation</a>.</li>
+<li id="ref-prism">Infgrad. <a href="https://huggingface.co/infgrad/Prism-Qwen3.5-Reranker-0.8B">Prism-Qwen3.5-Reranker-0.8B model card</a>.</li>
+<li id="ref-laya">ConvAI Innovations. <a href="https://huggingface.co/convaiinnovations/laya-multilingual">Laya Multilingual model card</a>.</li>
+</ol>
+<div class="endline">Aiden · Research publication v1.6</div>
+</main></div></div>
+<script id="survey-metrics-data" type="application/json">{"common_unseen":{"complete_at_3":{"old":0.6589147286821705,"expanded":0.7493540051679587,"delta":0.09043927648578812,"ci":[0.05694760820045558,0.12533333333333332]},"macro_recall_at_3":{"old":0.7115171650055371,"expanded":0.8018703088470532,"delta":0.09035314384151592,"ci":[0.058446251129177965,0.12324455205811137]},"top3_hit":{"old":0.7674418604651163,"expanded":0.8552971576227391,"delta":0.08785529715762273,"ci":[0.05319148936170213,0.12435233160621761]},"complete_at_5":{"old":0.7416020671834626,"expanded":0.8010335917312662,"delta":0.059431524547803614,"ci":[0.031007751937984496,0.09020618556701031]},"macro_recall_at_5":{"old":0.7887473852590132,"expanded":0.8486526393503138,"delta":0.0599052540913006,"ci":[0.033797468354430385,0.08823260073260074]},"top5_hit":{"old":0.834625322997416,"expanded":0.8914728682170543,"delta":0.056847545219638244,"ci":[0.028795811518324606,0.0873015873015873]}},"common_unseen_multi_item":{"complete_at_3":{"old":0.25287356321839083,"expanded":0.367816091954023,"delta":0.11494252873563218,"ci":[0.043478260869565216,0.19318181818181818]},"macro_recall_at_3":{"old":0.486863711001642,"expanded":0.601423097974822,"delta":0.11455938697318008,"ci":[0.0643859649122807,0.16515151515151516]},"top3_hit":{"old":0.735632183908046,"expanded":0.8390804597701149,"delta":0.10344827586206896,"ci":[0.03488372093023256,0.1797752808988764]},"complete_at_5":{"old":0.39080459770114945,"expanded":0.4942528735632184,"delta":0.10344827586206896,"ci":[0.031578947368421054,0.18181818181818182]},"macro_recall_at_5":{"old":0.600519978106185,"expanded":0.7060755336617405,"delta":0.10555555555555556,"ci":[0.05591397849462366,0.15738636363636366]},"top5_hit":{"old":0.8045977011494253,"expanded":0.896551724137931,"delta":0.09195402298850575,"ci":[0.03571428571428571,0.1595744680851064]}}}</script>
+<script>
+
+(() => {
+  "use strict";
+  const byId = id => document.getElementById(id);
+  const $ = selector => [...document.querySelectorAll(selector)];
+  const press = (selector, attr, value) => {
+    $(selector).forEach(el => el.setAttribute("aria-pressed", String(el.dataset[attr] === value)));
+  };
+  const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+  const data = JSON.parse(byId("survey-metrics-data").textContent);
+  const definitions = {
+    complete_at_: "Complete counts a query only when every gold item is within the cutoff.",
+    macro_recall_at_: "Macro Recall averages the fraction of gold items recovered for each query.",
+    hit: "Hit counts a query when at least one gold item is within the cutoff."
+  };
+  const fmt = value => (value * 100).toFixed(2);
+  const signed = value => (value < 0 ? "−" : "+") + fmt(Math.abs(value));
+  const metricState = {stat:"complete_at_", slice:"common_unseen", depth:"both"};
+
+  function makePanel(k, cohort, stat) {
+    const key = stat === "hit" ? "top" + k + "_hit" : stat + k;
+    const {old, expanded, delta, ci} = data[cohort][key];
+    const panel = document.createElement("section");
+    panel.className = "metric-panel";
+    panel.innerHTML = '<div class="metric-cut">Top-' + k + '</div>' +
+      '<div class="metric-value"><span>Earlier training</span><strong>' + fmt(old) + '%</strong></div>' +
+      '<div class="bar-track" aria-hidden="true"><i data-value="' + fmt(old) + '"></i></div>' +
+      '<div class="metric-value"><span>Expanded training</span><strong>' + fmt(expanded) + '%</strong></div>' +
+      '<div class="bar-track" aria-hidden="true"><i class="expanded" data-value="' + fmt(expanded) + '"></i></div>' +
+      '<span class="effect">' + signed(delta) + ' percentage points</span>' +
+      '<p class="note">Paired 95% CI ' + signed(ci[0]) + ' to ' + signed(ci[1]) + '</p>';
+    return panel;
+  }
+
+  function renderMetrics() {
+    const panels = byId("metric-panels");
+    const {stat, slice, depth} = metricState;
+    panels.dataset.single = String(depth !== "both");
+    byId("metric-definition").textContent = definitions[stat] + " Both checkpoints use Listwise cross-entropy + grouped BCE.";
+    panels.replaceChildren(...(depth === "both" ? [3, 5] : [Number(depth)]).map(k => makePanel(k, slice, stat)));
+    const fill = () => panels.querySelectorAll(".bar-track i").forEach(bar => bar.style.width = bar.dataset.value + "%");
+    if (reducedMotion.matches) fill(); else requestAnimationFrame(() => requestAnimationFrame(fill));
+  }
+
+  for (const name of ["stat", "slice", "depth"]) {
+    const selector = "[data-" + name + "]";
+    $(selector).forEach(button => button.addEventListener("click", () => {
+      metricState[name] = button.dataset[name];
+      press(selector, name, metricState[name]);
+      renderMetrics();
+    }));
+  }
+
+  const namedCandidates = {
+    A: ["Item A", true], X: ["Item X", false],
+    B: ["Item B", true], Y: ["Item Y", false],
+    C: ["Item C", true]
+  };
+  const initial = {A:0.85, X:0.67, B:0.40, Y:0.38, C:0.20};
+  const objective = {
+    pointwise: {input:["C"], text:"Give item C a positive relevance label. This update changes C’s score."},
+    pairwise: {input:["B","X"], text:"Teach the model that relevant B should outrank distractor X. Both scores move."},
+    listwise: {input:["A","X","B","Y","C"], text:"Pick C as the target for this training group. Its score competes with all other candidates in the group."}
+  };
+  let demo = {choice:"pointwise", k:3, scores:{...initial}, played:false};
+  const sigmoid = value => 1 / (1 + Math.exp(-value));
+
+  function renderDemo(animate = false) {
+    const config = objective[demo.choice];
+    const list = byId("demo-order");
+    const positions = new Map([...list.children].map(el => [el.dataset.candidate, el.getBoundingClientRect().top]));
+    const ranked = Object.entries(demo.scores).sort((a,b) => b[1] - a[1]);
+    const recovered = ranked.slice(0, demo.k).filter(([key]) => namedCandidates[key][1]).length;
+    byId("demo-explainer").textContent = config.text;
+    byId("demo-input").replaceChildren(...Object.keys(initial).map(key => {
+      const item = document.createElement("span");
+      item.className = config.input.includes(key) ? "active" : "";
+      item.textContent = key + " · " + (config.input.includes(key) ? (demo.choice === "listwise" && key !== "C" ? "group" : namedCandidates[key][1] ? "positive" : "negative") : "outside update");
+      return item;
+    }));
+    list.replaceChildren(...ranked.map(([key, score], i) => {
+      const item = document.createElement("li");
+      item.dataset.candidate = key;
+      if (i < demo.k) item.className = "shortlist";
+      item.innerHTML = '<span>' + (i+1) + '.</span><b>' + namedCandidates[key][0] + (namedCandidates[key][1] ? '<small>relevant</small>' : '') + '</b><span>' + score.toFixed(2) + '</span>';
+      return item;
+    }));
+    if (animate && !reducedMotion.matches && typeof Element.prototype.animate === "function") {
+      [...list.children].forEach(item => {
+        const before = positions.get(item.dataset.candidate);
+        if (before === undefined) return;
+        const offset = before - item.getBoundingClientRect().top;
+        if (offset) item.animate([{transform:"translateY(" + offset + "px)"},{transform:"translateY(0)"}], {duration:425,easing:"cubic-bezier(.22,.7,.28,1)"});
+      });
+    }
+    byId("demo-result").textContent = "Top-" + demo.k + " recovers " + recovered + " of 3 relevant items. Complete: " + (recovered === 3 ? "yes." : "no.");
+    byId("demo-step").textContent = demo.played ? "Replay update" : "Play one update";
+  }
+
+  function step() {
+    const score = {...initial};
+    const rate = 1.25;
+    if (demo.choice === "pointwise") score.C += rate * (1 - sigmoid(score.C));
+    else if (demo.choice === "pairwise") {
+      const shift = rate * (1 - sigmoid(score.B - score.X));
+      score.B += shift;
+      score.X -= shift;
+    } else {
+      const denominator = Object.values(score).reduce((sum, v) => sum + Math.exp(v), 0);
+      for (const key of Object.keys(score)) score[key] += rate * (Number(key === "C") - Math.exp(initial[key]) / denominator);
+    }
+    if (!reducedMotion.matches && typeof Element.prototype.animate === "function") {
+      $(".architecture-flow > div").forEach((stage, index) => {
+        stage.getAnimations().forEach(animation => animation.cancel());
+        stage.animate([{backgroundColor:"#fff"},{backgroundColor:"#dcecff",borderColor:"#2d66b9",offset:0.40},{backgroundColor:"#fff"}],
+                      {duration:470,delay:index*120,easing:"ease-in-out"});
+      });
+    }
+    demo.scores = score;
+    demo.played = true;
+    renderDemo(true);
+  }
+
+  $("[data-objective]").forEach(button => button.addEventListener("click", () => {
+    demo.choice = button.dataset.objective;
+    demo.scores = {...initial};
+    demo.played = false;
+    press("[data-objective]","objective",demo.choice);
+    renderDemo();
+  }));
+  $("[data-demo-k]").forEach(button => button.addEventListener("click", () => {
+    demo.k = Number(button.dataset.demoK);
+    press("[data-demo-k]","demoK",String(demo.k));
+    renderDemo();
+  }));
+  byId("demo-step").addEventListener("click", () => {
+    if (demo.played) {
+      demo.scores = {...initial};
+      renderDemo();
+      requestAnimationFrame(() => requestAnimationFrame(step));
+    } else step();
+  });
+  byId("demo-reset").addEventListener("click", () => {
+    demo.scores = {...initial};
+    demo.played = false;
+    renderDemo(true);
+  });
+  renderMetrics();
+  renderDemo();
+})();
+
+</script>
+</body></html>

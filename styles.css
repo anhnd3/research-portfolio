@@ -1,0 +1,50 @@
+:root{--ink:#172335;--muted:#60738b;--accent:#1e59b8;--accent2:#14a38b;--line:#dfe7f1;--canvas:#f7f9fc;--soft:#eff5ff}
+html{scroll-behavior:smooth}
+body{color:var(--ink);background:#fff;line-height:1.7;font-size:1.025rem}
+#quarto-content{padding-bottom:3.5rem}
+.navbar{box-shadow:0 1px 0 rgba(0,0,0,.12)}
+.navbar-brand{font-weight:800;letter-spacing:.02em}
+h1,h2,h3,h4{color:#13243a;letter-spacing:-.024em;line-height:1.27}
+h1.title{font-size:clamp(2.1rem,3.9vw,3.45rem);font-weight:830;letter-spacing:-.04em;line-height:1.1;margin-bottom:.8rem;max-width:1000px}
+h2{margin-top:3.3rem;border-bottom:1px solid var(--line);padding-bottom:.45rem}
+h3{margin-top:2.25rem}
+p{max-width:77ch}
+a{color:var(--accent);text-underline-offset:3px}
+.page-columns .content{min-width:0}
+.quarto-title-meta,.quarto-title-banner{color:#56697f}
+.quarto-title .description,.quarto-title .subtitle{color:var(--muted);font-size:1.12rem}
+#TOC{font-size:.875rem}
+#TOC a{color:#4c5c72}
+.report-banner{margin:2rem 0 2.4rem;padding:1.4rem 1.6rem;border-radius:16px;background:linear-gradient(115deg,#f1f7ff,#f7fcfa);border:1px solid #dce7f5}
+.report-banner .eyebrow,.eyebrow{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;font-weight:750;color:#25569e}
+.report-banner h2{font-size:1.27rem;margin:.45rem 0 .5rem;border:0;padding:0}
+.report-banner p{margin:0;color:#405672}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.7rem;margin:1.15rem 0 1.4rem}
+.stat{background:#fff;border:1px solid var(--line);border-radius:12px;padding:1rem;box-shadow:0 5px 20px rgba(24,50,88,.035)}
+.stat .value{font-size:1.7rem;font-weight:800;letter-spacing:-.04em;color:#163963;line-height:1.15}
+.stat .label{font-size:.79rem;color:var(--muted);line-height:1.4;margin-top:.35rem}
+.home-hero{background:linear-gradient(135deg,#12233a 0%,#1b3c63 70%,#17686c 100%);color:#fff;border-radius:22px;padding:clamp(1.8rem,5vw,4.2rem);margin:1.3rem 0 2.2rem;box-shadow:0 16px 48px rgba(15,43,74,.13)}
+.home-hero h1{font-size:clamp(2.2rem,4vw,3.65rem);color:#fff;border:0;letter-spacing:-.04em;line-height:1.09;margin:.55rem 0}
+.home-hero p{font-size:1.09rem;color:#d8e7f9;max-width:53ch;margin:0}
+.home-hero .eyebrow{color:#a8ddff}
+.publication-card{border:1px solid var(--line);border-radius:16px;padding:1.5rem;margin:1rem 0 2rem;box-shadow:0 8px 30px rgba(13,44,81,.035)}
+.publication-card h3{margin:.25rem 0 .65rem;font-size:1.35rem}
+.publication-card p{margin:.5rem 0 .8rem;color:#445970}
+.publication-card .meta{font-size:.79rem;color:#66819b;letter-spacing:.025em}
+.publication-card a.stretched{font-weight:700}
+.figure-panel{margin:1.9rem 0 2.25rem;padding:.95rem;border:1px solid #dae4f0;border-radius:16px;background:#fbfdff}
+.figure-panel img{width:100%;height:auto;display:block}
+.figure-panel .caption{font-size:.82rem;color:var(--muted);margin:.5rem .5rem .2rem;max-width:100%}
+table{font-size:.875rem !important;line-height:1.45;border-collapse:separate !important;border-spacing:0 !important;width:100%;margin:1rem 0 1.8rem !important;display:block;max-width:100%;overflow-x:auto}
+table th{white-space:nowrap;background:#edf3fa !important;color:#1b3555 !important;font-weight:750 !important;border-bottom:2px solid #c8d8eb !important}
+table td,table th{padding:.72rem .85rem !important;vertical-align:middle !important}
+table tbody tr:nth-child(even){background:#f8fafc}
+table tbody tr:hover{background:#ecf5ff}
+table td:not(:first-child){font-variant-numeric:tabular-nums}
+blockquote{border-left:4px solid #2a72cc;background:#f4f8fe;padding:1rem 1.25rem;border-radius:0 9px 9px 0}
+code{color:#1b5596;background:#f1f5fa}
+.callout{border-radius:12px}
+.key-finding{background:#f4f8fe;border-left:4px solid #2d71c2;border-radius:4px 10px 10px 4px;padding:1.1rem 1.3rem;margin:1.6rem 0}
+.key-finding strong{color:#164379}
+.report-note{font-size:.86rem;color:var(--muted);border-top:1px solid var(--line);padding-top:1rem;margin-top:3rem}
+@media(max-width:780px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.report-banner{padding:1.1rem}.home-hero{border-radius:14px}.publication-card{padding:1.15rem}table{font-size:.8rem !important}table td,table th{padding:.6rem .55rem !important}}

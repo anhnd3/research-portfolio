@@ -1,0 +1,19 @@
+---
+title: "Publication Policy"
+---
+
+## Evidence and reproducibility
+
+Published articles distinguish **source-reported model characteristics**, **experimental observations**, and **interpretations or hypotheses**. Results should be interpreted in the context of the stated cohort, scoring configuration, and evaluation protocol.
+
+Charts visualize reported aggregate metrics. Methodology, evidence boundaries, and uncertainty are described alongside the corresponding findings.
+
+## Research artifacts, source code, and rights
+
+Additional research artifacts, source code, or checkpoints may be linked per publication when relevant and cleared for release. Website publication does not imply an open-source license.
+
+Publication does not imply authorization to reuse third-party materials or that the research represents an employer or institution.
+
+## Corrections
+
+Factual corrections and technical questions can be raised via GitHub Issues. Any future GitHub Discussions space, if enabled, is intended for technical discussion rather than an open research lab.

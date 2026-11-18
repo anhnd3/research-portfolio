@@ -1,0 +1,8 @@
+---
+title: "Research Notes"
+description: "Follow-up observations, open questions and short technical notes."
+---
+
+Shorter research notes will appear here when they contribute independent insights beyond the main articles.
+
+For the current detailed study, see [Compact Models for Domain-Specific Reranking](articles/compact-domain-reranking/).
