@@ -73,6 +73,13 @@ table{font-size:13px;line-height:1.55;min-width:545px}caption{color:#65786b;padd
 @media(max-width:540px){.mast{gap:7px 13px;min-height:62px;padding-top:11px;padding-bottom:11px}.mast .brand{font-size:14px}.mast .brand::before{height:29px;width:29px;margin-right:8px}.mast-end{width:100%;margin:4px 0 0;gap:12px;justify-content:flex-start}.mast .mast-end a{font-size:9px}.version{margin-left:auto}.hero{padding-top:38px;padding-bottom:39px}.hero h1{font-size:clamp(36px,9vw,48px)}.layout{padding-top:23px;padding-bottom:55px}.article{padding:20px 18px}.abstract{padding:15px}.article h2{font-size:29px}.explorer{padding:13px}.sidebar a{font-size:11px}}
 @media(max-width:370px){:root{--gutter:20px}.article{padding:18px 15px}.mast-end{gap:9px}.mast .mast-end a{font-size:8.5px}}
 
+
+/* Shared Aiden back-to-top action: hidden on first screen, accessible after scroll. */
+.back-to-top{position:fixed;right:clamp(18px,3vw,36px);bottom:clamp(18px,3vw,30px);z-index:110;display:inline-flex;align-items:center;justify-content:center;gap:9px;height:46px;min-width:87px;padding:0 16px;border:1px solid #abc3a8;border-radius:4px;background:#f8f5e8;color:#183a29;box-shadow:0 7px 25px rgba(5,26,15,.20);font:750 11px/1 var(--mono,ui-monospace,monospace);letter-spacing:.06em;cursor:pointer;opacity:0;visibility:hidden;pointer-events:none;transform:translateY(12px);transition:opacity .19s ease,transform .19s ease,background .19s ease,visibility .19s}
+.back-to-top.is-visible{opacity:1;visibility:visible;pointer-events:auto;transform:none}.back-to-top:hover{background:#e2edce;border-color:#80a680;color:#102a1d}.back-to-top:focus-visible{outline:3px solid #a4d3a0;outline-offset:3px}.back-to-top-arrow{font-family:Arial,sans-serif;font-size:19px;line-height:1;letter-spacing:0}
+@media(max-width:540px){.back-to-top{right:18px;bottom:18px;min-width:76px;height:44px;padding:0 12px}}
+@media(prefers-reduced-motion:reduce){.back-to-top{transition:none}}
+
 </style>
 </head><body>
 <header class="mast" role="banner">
@@ -483,5 +490,15 @@ table{font-size:13px;line-height:1.55;min-width:545px}caption{color:#65786b;padd
   renderDemo();
 })();
 
+</script>
+<!-- Shared Aiden navigation: persistent back-to-top control -->
+<button class="back-to-top" type="button" aria-label="Back to top" title="Back to top" tabindex="-1" aria-hidden="true"><span aria-hidden="true" class="back-to-top-arrow">↑</span><span aria-hidden="true">Top</span></button>
+<script>
+/* Back-to-top behavior is intentionally independent of the page's other scripts. */
+(()=>{const button=document.querySelector('.back-to-top');if(!button)return;
+const reduceMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
+const update=()=>{const visible=window.scrollY>Math.max(440,window.innerHeight*.55);button.classList.toggle('is-visible',visible);button.tabIndex=visible?0:-1;button.setAttribute('aria-hidden',String(!visible));};
+button.addEventListener('click',()=>window.scrollTo({top:0,behavior:reduceMotion.matches?'auto':'smooth'}));
+window.addEventListener('scroll',update,{passive:true});update();})();
 </script>
 </body></html>
