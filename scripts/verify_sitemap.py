@@ -28,6 +28,13 @@ assert re.search(r'<meta\b(?=[^>]*\bname="twitter:card")(?=[^>]*\bcontent="summa
 assert 'CONTENT PREVIEW' not in text and 'noindex' not in text, "Reranking draft metadata present"
 assert 'What worked' in text and 'What still falls short' in text and 'class="key-takeaways-grid"' in text, "v3.1 balanced key takeaways absent"
 assert 'E5 + Laya' in text and 'Qwen Direct' in text, "Full-pipeline evidence absent"
+# Validate every internal article fragment and the header routes.
+article_ids=set(re.findall(r'\bid="([^"]+)"',text))
+local_links=re.findall(r'href="#([^"]+)"',text)
+missing_anchors=sorted({anchor for anchor in local_links if anchor not in article_ids})
+assert not missing_anchors, f"Broken article anchors: {missing_anchors}"
+assert '<a href="#contract">Method</a>' in text and '<a href="#systems">Results</a>' in text and '<a href="#references">References</a>' in text, "Article header navigation targets changed"
+
 match=re.search(r'<script type="application/ld\+json">([\s\S]*?)</script>',text)
 assert match, "Missing article JSON-LD"
 data=json.loads(match.group(1))
