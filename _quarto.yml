@@ -1,27 +1,31 @@
 project:
   type: website
   output-dir: _site
+  render:
+    - "*.qmd"
+    - "!index.qmd"
   resources:
+    - index.html
     - articles/compact-domain-reranking/index.html
     - assets/research-reranking-og.png
 
 website:
-  title: "Aiden | Research Notes"
+  title: "Aiden | Research Portfolio"
   site-url: "https://anhnd3.github.io/research-portfolio/"
   image: assets/research-reranking-og.png
-  image-alt: "Aiden research: Compact Models for Domain-Specific Reranking"
-  description: "Independent research notes on applied AI systems, model adaptation, retrieval, and engineering evaluation."
+  image-alt: "Aiden research portfolio"
+  description: "Independent technical research in applied AI, evaluation and software engineering."
   navbar:
-    title: "AND / Research Portfolio"
-    background: "#101c2d"
-    foreground: "#f4f8ff"
+    title: "Aiden"
+    background: "#15221d"
+    foreground: "#f4f1e6"
     left:
       - text: "Research"
-        href: articles.qmd
-      - text: "Notes"
-        href: notes.qmd
+        href: index.html#research
       - text: "About"
-        href: about.qmd
+        href: index.html#about
+      - text: "Publication policy"
+        href: index.html#policy
     right:
       - icon: github
         aria-label: "GitHub repository"
