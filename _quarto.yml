@@ -9,7 +9,9 @@ project:
     - googlef3637ee6fdc70f85.html
     - articles/compact-domain-reranking/index.html
     - articles/vision-transformers-facial-expression-recognition/index.html
+    - articles/gdem-graph-distillation-reproduction/index.html
     - assets/research-reranking-og.png
+    - assets/research-gdem-og.png
 
 website:
   title: "Aiden | Research Portfolio"

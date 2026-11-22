@@ -10,6 +10,7 @@ SITE=ROOT/"_site"
 BASE="https://anhnd3.github.io/research-portfolio/"
 ARTICLE=BASE+"articles/compact-domain-reranking/"
 VIT=BASE+"articles/vision-transformers-facial-expression-recognition/"
+GDEM=BASE+"articles/gdem-graph-distillation-reproduction/"
 NS="http://www.sitemaps.org/schemas/sitemap/0.9"
 ET.register_namespace("",NS)
 def tag(name): return f"{{{NS}}}{name}"
@@ -46,8 +47,25 @@ vit_data=json.loads(vit_match.group(1))
 assert vit_data.get("@type")=="Article" and vit_data.get("author",{}).get("name")=="Aiden", "ViT JSON-LD invalid"
 assert vit_data.get("datePublished")=="2026-11-22", "ViT publication date should not be research date"
 
+# Standalone GDEM article: distinct social card, public status, research/publication dates.
+gdem_page=SITE/"articles/gdem-graph-distillation-reproduction/index.html"
+gdem_cover=SITE/"assets/research-gdem-og.png"
+assert gdem_page.is_file(), "GDEM publication missing"
+assert gdem_cover.is_file() and gdem_cover.stat().st_size>10000, "GDEM cover missing"
+gdem_text=gdem_page.read_text(encoding="utf-8")
+assert re.search(r'<meta[^>]+content="index,follow,max-image-preview:large"[^>]+name="robots"',gdem_text), "GDEM noindex"
+assert f'href="{GDEM}" rel="canonical"' in gdem_text, "GDEM canonical missing"
+assert 'Research period: Dec 2025' in gdem_text and 'CONTENT PREVIEW' not in gdem_text
+assert f'content="{BASE}assets/research-gdem-og.png" property="og:image"' in gdem_text, "GDEM OG cover not configured"
+gdem_match=re.search(r'<script type="application/ld\+json">([\s\S]*?)</script>',gdem_text)
+assert gdem_match, "GDEM Article structured data missing"
+gdem_schema=json.loads(gdem_match.group(1))
+gdem_data=next((n for n in gdem_schema.get("@graph",[]) if n.get("@type")=="Article"),None)
+assert gdem_data and gdem_data.get("datePublished")=="2026-11-22" and gdem_data.get("temporalCoverage")=="2025-12"
+assert gdem_data.get("author",{}).get("name")=="Aiden"
+
 home_text=(SITE/"index.html").read_text(encoding="utf-8")
-assert "02 publications" in home_text and VIT in home_text, "Homepage publication index is stale"
+assert "03 publications" in home_text and VIT in home_text and GDEM in home_text, "Homepage publication index is stale"
 assert f'href="{BASE}" rel="canonical"' in home_text, "Homepage canonical missing"
 assert '<script type="application/ld+json">' in home_text, "Homepage JSON-LD missing"
 
@@ -75,6 +93,7 @@ required={
     BASE+"policy.html":"policy.html",
     ARTICLE:"articles/compact-domain-reranking/index.html",
     VIT:"articles/vision-transformers-facial-expression-recognition/index.html",
+    GDEM:"articles/gdem-graph-distillation-reproduction/index.html",
 }
 for url,relative in required.items():
     assert (SITE/relative).is_file(), f"Missing rendered page: {relative}"
@@ -82,14 +101,14 @@ for url,relative in required.items():
         item=ET.SubElement(root,tag("url"))
         ET.SubElement(item,tag("loc")).text=url
         entries[url.rstrip("/")]=[item]
-    if url in (ARTICLE,VIT):
+    if url in (ARTICLE,VIT,GDEM):
         item=entries[url.rstrip("/")][0]
         lastmod=item.find(tag("lastmod"))
         if lastmod is None: lastmod=ET.SubElement(item,tag("lastmod"))
-        lastmod.text=data["dateModified"] if url==ARTICLE else vit_data["dateModified"]
+        lastmod.text=data["dateModified"] if url==ARTICLE else (vit_data["dateModified"] if url==VIT else gdem_data["dateModified"])
 
 locs=[e.text for e in root.findall(f'{tag("url")}/{tag("loc")}')]
 assert len(locs)==len(set(url.rstrip("/") for url in locs)), "Duplicate URLs"
 assert all(urlparse(url).hostname=="anhnd3.github.io" for url in locs), "Wrong sitemap host"
 path.write_bytes(ET.tostring(root,encoding="utf-8",xml_declaration=True))
-print(f"SEO verified: {len(locs)} URLs; homepage, two articles, canonicals and structured metadata OK.")
+print(f"SEO verified: {len(locs)} URLs; homepage, three articles, canonicals and social cards OK.")
