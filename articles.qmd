@@ -8,9 +8,9 @@ Research is organized by **when the work was conducted**, newest first. Publicat
 ## 2026
 
 <div class="publication-card">
-  <div class="meta">EMPIRICAL RETROSPECTIVE · RESEARCH 2026 · UPDATED NOV 2026 · V1.6</div>
+  <div class="meta">EMPIRICAL RETROSPECTIVE · RESEARCH 2026 · UPDATED NOV 2026 · V3.1</div>
   <h3><a href="articles/compact-domain-reranking/">Compact Models for Domain-Specific Reranking</a></h3>
-  <p>Compact rerankers, training objectives and multi-label recovery, including owner-first baseline and matched evaluations.</p>
+  <p>From E5 + Laya to compact Qwen and Prism rerankers: matched full-pipeline results, learning-to-rank objectives and training-coverage experiments.</p>
   <a href="articles/compact-domain-reranking/">Open article →</a>
 </div>
 

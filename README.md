@@ -43,7 +43,7 @@ See [Publication Policy](policy.qmd). No open content/code license is granted im
 
 ## Discovery and indexing
 
-The reranking article remains **v1.6**. The ViT and GDEM retrospectives were published on **22 November 2026**; GDEM research dates to **December 2025**. The static HTML article is injected into Quarto's generated sitemap after rendering, because it is published as a resource rather than a `.qmd` page. SEO validation also checks the canonical URL, JSON-LD article metadata, social preview image, and `index,follow` status.
+The reranking article has been updated to **v3.1** (re-architected research narrative and balanced takeaways, published 22 November 2026). The ViT and GDEM retrospectives were published on **22 November 2026**; GDEM research dates to **December 2025**. The static HTML article is injected into Quarto's generated sitemap after rendering, because it is published as a resource rather than a `.qmd` page. SEO validation also checks the canonical URL, JSON-LD article metadata, social preview image, and `index,follow` status.
 
 - Reranking article: https://anhnd3.github.io/research-portfolio/articles/compact-domain-reranking/
 - Vision Transformer article: https://anhnd3.github.io/research-portfolio/articles/vision-transformers-facial-expression-recognition/

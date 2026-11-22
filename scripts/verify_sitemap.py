@@ -21,10 +21,13 @@ assert page.is_file(), "Research article missing from _site"
 assert image.is_file() and image.stat().st_size>10000, "Social card missing from _site"
 text=page.read_text(encoding="utf-8")
 assert "<title>Compact Models for Domain-Specific Reranking | Qwen3-0.6B | Aiden</title>" in text, "Reranking SEO title missing"
-assert '<meta name="robots" content="index,follow' in text
-assert f'<link rel="canonical" href="{ARTICLE}"' in text
-assert f'<meta property="og:image" content="{BASE}assets/research-reranking-og.png"' in text
-assert 'name="twitter:card" content="summary_large_image"' in text
+assert re.search(r'<meta\b(?=[^>]*\bname="robots")(?=[^>]*\bcontent="index,follow,max-image-preview:large")[^>]*>',text), "Reranking must be indexable"
+assert re.search(r'<link\b(?=[^>]*\brel="canonical")(?=[^>]*\bhref="'+re.escape(ARTICLE)+r'")[^>]*>',text), "Reranking canonical missing"
+assert re.search(r'<meta\b(?=[^>]*\bproperty="og:image")(?=[^>]*\bcontent="'+re.escape(BASE+'assets/research-reranking-og.png')+r'")[^>]*>',text), "Reranking OG card missing"
+assert re.search(r'<meta\b(?=[^>]*\bname="twitter:card")(?=[^>]*\bcontent="summary_large_image")[^>]*>',text), "Reranking Twitter card missing"
+assert 'CONTENT PREVIEW' not in text and 'noindex' not in text, "Reranking draft metadata present"
+assert 'What worked' in text and 'What still falls short' in text and 'class="key-takeaways-grid"' in text, "v3.1 balanced key takeaways absent"
+assert 'E5 + Laya' in text and 'Qwen Direct' in text, "Full-pipeline evidence absent"
 match=re.search(r'<script type="application/ld\+json">([\s\S]*?)</script>',text)
 assert match, "Missing article JSON-LD"
 data=json.loads(match.group(1))
