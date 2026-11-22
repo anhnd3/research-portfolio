@@ -1,25 +1,31 @@
 ---
 title: "Research Articles"
-description: "Long-form technical research and empirical retrospectives."
+description: "An archive of empirical research and technical retrospectives, grouped by research year."
 ---
 
-<div class="publication-card">
-  <div class="meta">EXPERIMENTAL RETROSPECTIVE · RESEARCH SEP 2025 · PUBLISHED 22 NOVEMBER 2026</div>
-  <h3><a href="articles/vision-transformers-facial-expression-recognition/">Vision Transformers for Facial Expression Recognition</a></h3>
-  <p>FER-2013 comparison of ViT-B/16, TransNeXt-B and ShuffViT-DFER: accuracy, parameter capacity and measured inference latency.</p>
-  <a href="articles/vision-transformers-facial-expression-recognition/">Open article →</a>
-</div>
+Research is organized by **when the work was conducted**, newest first. Publication dates are recorded separately.
+
+## 2026
 
 <div class="publication-card">
-  <div class="meta">EXPERIMENTAL RETROSPECTIVE · RESEARCH DEC 2025 · PUBLISHED 22 NOVEMBER 2026</div>
+  <div class="meta">EMPIRICAL RETROSPECTIVE · RESEARCH 2026 · UPDATED NOV 2026 · V1.6</div>
+  <h3><a href="articles/compact-domain-reranking/">Compact Models for Domain-Specific Reranking</a></h3>
+  <p>Compact rerankers, training objectives and multi-label recovery, including owner-first baseline and matched evaluations.</p>
+  <a href="articles/compact-domain-reranking/">Open article →</a>
+</div>
+
+## 2025
+
+<div class="publication-card">
+  <div class="meta">EXPERIMENTAL RETROSPECTIVE · RESEARCH DEC 2025 · PUBLISHED NOV 2026</div>
   <h3><a href="articles/gdem-graph-distillation-reproduction/">Reproducing GDEM: Accuracy Is Not Transfer</a></h3>
-  <p>Graph Fourier and eigenbasis matching: replication of graph distillation accuracy on six datasets and examination of cross-GNN transfer.</p>
+  <p>Graph Fourier foundations and eigenbasis matching: reproducing graph distillation accuracy on six datasets and examining cross-GNN transfer.</p>
   <a href="articles/gdem-graph-distillation-reproduction/">Open article →</a>
 </div>
 
 <div class="publication-card">
-  <div class="meta">EMPIRICAL RETROSPECTIVE · RESEARCH 2026 · UPDATED 22 NOVEMBER 2026 · V1.6</div>
-  <h3><a href="articles/compact-domain-reranking/">Compact Models for Domain-Specific Reranking</a></h3>
-  <p>Compact rerankers, training objectives and multi-label recovery, including owner-first baseline, matched evaluations and evidence limitations.</p>
-  <a href="articles/compact-domain-reranking/">Open article →</a>
+  <div class="meta">EXPERIMENTAL RETROSPECTIVE · RESEARCH SEP 2025 · PUBLISHED NOV 2026</div>
+  <h3><a href="articles/vision-transformers-facial-expression-recognition/">Vision Transformers for Facial Expression Recognition</a></h3>
+  <p>FER-2013 comparison of ViT-B/16, TransNeXt-B and ShuffViT-DFER: accuracy, parameter count and measured inference latency.</p>
+  <a href="articles/vision-transformers-facial-expression-recognition/">Open article →</a>
 </div>

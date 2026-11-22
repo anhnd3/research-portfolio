@@ -116,9 +116,32 @@ html,body{max-width:100%;overflow-x:clip}
 @media(max-width:540px){.back-to-top{right:18px;bottom:18px;min-width:76px;height:44px;padding:0 12px}}
 @media(prefers-reduced-motion:reduce){.back-to-top{transition:none}}
 
+
+/* Research index / reverse-chronological year groups.
+   No empty year placeholders. Add studies within their research year as published. */
+.research-index{margin-top:25px}
+.research-index-top{display:flex;justify-content:space-between;gap:16px;color:#6c8370;font-size:10px;letter-spacing:.13em;border-bottom:1px solid #afc2b2;padding:0 0 14px}
+.research-year{margin:0;display:grid;grid-template-columns:minmax(145px,18%) minmax(0,1fr);gap:26px;padding-top:31px}
+.research-year+.research-year{margin-top:33px;border-top:1px solid #c6d2c4}
+.research-year-head{display:flex;flex-direction:column;align-items:flex-start;gap:12px;padding-top:3px}
+.research-year-head h3{font:400 clamp(34px,4.25vw,54px)/1 var(--serif);letter-spacing:-.045em;color:#264b35;margin:0}
+.research-year-count{font-size:10px;letter-spacing:.12em;color:#66826c}
+.research-year-items{min-width:0}
+.research-year .publication-entry{display:grid;grid-template-columns:minmax(100px,145px) minmax(0,1fr) minmax(100px,116px);column-gap:20px;row-gap:12px;align-items:start;padding:20px 14px 23px;margin:0;background:transparent;border:0;border-bottom:1px solid #d0d9ce;transition:background .18s ease}
+.research-year .publication-entry:first-child{border-top:1px solid #d0d9ce}
+.research-year .publication-entry:hover{background:#eaf0e6}
+.research-year .publication-index{align-self:start;padding-top:7px;font-size:9px;line-height:1.8;letter-spacing:.035em;color:#657b6a}
+.research-year .publication-main h4{font:400 clamp(22px,2.1vw,29px)/1.22 var(--serif);letter-spacing:-.02em;color:#1b2f22;overflow-wrap:break-word;margin:0}
+.research-year .publication-main p{color:#50695a;font-size:12px;line-height:1.72;margin:9px 0 0;max-width:69ch}
+.research-year .publication-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.research-year .publication-tags .tag{font-size:9px;line-height:1.35;padding:4px 7px}
+.research-year .publication-cta{justify-self:end;align-self:center;font-size:10px;font-weight:650;color:#296542;white-space:nowrap}
+@media(max-width:1100px){.research-year{grid-template-columns:115px minmax(0,1fr);gap:18px}.research-year .publication-entry{grid-template-columns:120px minmax(0,1fr);column-gap:16px}.research-year .publication-cta{grid-column:2;justify-self:start;align-self:start}}
+@media(max-width:710px){.research-index-top{font-size:9px}.research-year{display:block;padding-top:24px}.research-year+.research-year{margin-top:27px}.research-year-head{flex-direction:row;justify-content:space-between;align-items:baseline;margin:0 0 13px}.research-year-head h3{font-size:41px}.research-year .publication-entry{grid-template-columns:1fr;gap:7px;padding:19px 12px 20px}.research-year .publication-index{padding-top:0}.research-year .publication-main h4{font-size:clamp(24px,7vw,30px)}.research-year .publication-cta{grid-column:1;margin-top:3px}.research-year .publication-tags .tag{font-size:8.5px}}
+@media(prefers-reduced-motion:reduce){.research-year .publication-entry{transition:none}}
 </style><meta name="twitter:title" content="Aiden | Applied AI Research Portfolio"/>
 <meta name="twitter:description" content="Research notes on compact reranking, information retrieval, Vision Transformers and explainable AI."/>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://anhnd3.github.io/research-portfolio/#website","name":"Aiden Research Portfolio","url":"https://anhnd3.github.io/research-portfolio/","description":"Independent technical research in applied artificial intelligence: information retrieval, compact models, computer vision and explainable AI.","inLanguage":"en","publisher":{"@id":"https://anhnd3.github.io/research-portfolio/#aiden"}},{"@type":"Person","@id":"https://anhnd3.github.io/research-portfolio/#aiden","name":"Aiden","url":"https://anhnd3.github.io/research-portfolio/#about"},{"@type":"CollectionPage","@id":"https://anhnd3.github.io/research-portfolio/#research","name":"Selected Research","url":"https://anhnd3.github.io/research-portfolio/#research","isPartOf":{"@id":"https://anhnd3.github.io/research-portfolio/#website"},"mainEntity":{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"url":"https://anhnd3.github.io/research-portfolio/articles/vision-transformers-facial-expression-recognition/"},{"@type":"ListItem","position":2,"url":"https://anhnd3.github.io/research-portfolio/articles/gdem-graph-distillation-reproduction/"},{"@type":"ListItem","position":3,"url":"https://anhnd3.github.io/research-portfolio/articles/compact-domain-reranking/"}]}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://anhnd3.github.io/research-portfolio/#website","name":"Aiden Research Portfolio","url":"https://anhnd3.github.io/research-portfolio/","description":"Independent technical research in applied artificial intelligence: information retrieval, compact models, computer vision and explainable AI.","inLanguage":"en","publisher":{"@id":"https://anhnd3.github.io/research-portfolio/#aiden"}},{"@type":"Person","@id":"https://anhnd3.github.io/research-portfolio/#aiden","name":"Aiden","url":"https://anhnd3.github.io/research-portfolio/#about"},{"@type":"CollectionPage","@id":"https://anhnd3.github.io/research-portfolio/#research","name":"Selected Research","url":"https://anhnd3.github.io/research-portfolio/#research","isPartOf":{"@id":"https://anhnd3.github.io/research-portfolio/#website"},"mainEntity":{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"url":"https://anhnd3.github.io/research-portfolio/articles/compact-domain-reranking/"},{"@type":"ListItem","position":2,"url":"https://anhnd3.github.io/research-portfolio/articles/gdem-graph-distillation-reproduction/"},{"@type":"ListItem","position":3,"url":"https://anhnd3.github.io/research-portfolio/articles/vision-transformers-facial-expression-recognition/"}]}}]}</script>
 </head><body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><div class="header-wrap"><a aria-label="Aiden Research Portfolio home" class="mark" href="/research-portfolio/"><span class="mark-symbol">A</span><span class="mark-name">AIDEN</span></a><nav aria-label="Primary navigation" class="header-nav" id="nav"><a data-nav="research" href="/research-portfolio/#research">Research</a><a data-nav="about" href="/research-portfolio/#about">About</a><a data-nav="policy" href="/research-portfolio/#policy">Publication policy</a></nav><div class="header-actions"><button aria-label="Search site" class="icon-btn" id="openSearch" title="Search (/)" type="button"><i aria-hidden="true" class="search-icon"></i></button><button aria-controls="nav" aria-expanded="false" aria-label="Toggle menu" class="icon-btn menu-btn" id="menuBtn" type="button"><span aria-hidden="true">☰</span></button></div></div></header>
@@ -132,23 +155,49 @@ html,body{max-width:100%;overflow-x:clip}
 <div class="hero-ctas"><a class="primary-action" href="#research">Explore research <span aria-hidden="true">↗</span></a><a class="hero-secondary" href="#about">About me <span aria-hidden="true">→</span></a></div>
 </div></div></section>
 <section class="wrapper section-pad featured" id="research">
-<div class="section-intro"><div><div class="kicker">01 / RESEARCH LIBRARY</div><h2>Selected work.</h2></div><p>Independent technical writing, published as each study is ready.</p></div>
-<div class="library-group"><div class="library-grouphead"><span class="mono">PUBLISHED WORK</span><span>03 publications</span></div>
+  <div class="section-intro">
+    <div><div class="kicker">01 / RESEARCH LIBRARY</div><h2>Selected work.</h2></div>
+    <p>Research grouped by the year of study, newest first. Entries are published as the evidence becomes ready.</p>
+  </div>
+  <div class="research-index">
+    <div class="research-index-top mono"><span>RESEARCH ARCHIVE</span><span>03 PUBLISHED STUDIES</span></div>
+    <section class="research-year" aria-labelledby="research-year-2026">
+  <header class="research-year-head">
+    <h3 id="research-year-2026">2026</h3>
+    <span class="research-year-count mono">01 STUDY</span>
+  </header>
+  <div class="research-year-items"><a class="publication-entry" href="https://anhnd3.github.io/research-portfolio/articles/compact-domain-reranking/">
+  <span class="publication-index mono">RESEARCH 2026 · EMPIRICAL STUDY</span>
+  <div class="publication-main"><h4>Compact Models for Domain-Specific Reranking</h4>
+    <p>Evaluating Qwen3-0.6B rerankers, grouped and listwise training objectives, and multi-label retrieval under matched conditions.</p>
+    <div class="publication-tags"><span class="tag">INFORMATION RETRIEVAL</span><span class="tag">COMPACT MODELS</span></div>
+  </div>
+  <span class="publication-cta mono">READ ARTICLE <span aria-hidden="true">↗</span></span>
+</a></div>
+</section>
+    <section class="research-year" aria-labelledby="research-year-2025">
+  <header class="research-year-head">
+    <h3 id="research-year-2025">2025</h3>
+    <span class="research-year-count mono">02 STUDIES</span>
+  </header>
+  <div class="research-year-items"><a class="publication-entry" href="https://anhnd3.github.io/research-portfolio/articles/gdem-graph-distillation-reproduction/">
+  <span class="publication-index mono">DEC 2025 · REPRODUCTION</span>
+  <div class="publication-main"><h4>Reproducing GDEM: Accuracy Is Not Transfer</h4>
+    <p>Graph Fourier foundations and eigenbasis matching: reproducing graph distillation accuracy across six datasets while examining cross-GNN transfer.</p>
+    <div class="publication-tags"><span class="tag">GRAPH MACHINE LEARNING</span><span class="tag">GRAPH DISTILLATION</span></div>
+  </div>
+  <span class="publication-cta mono">READ ARTICLE <span aria-hidden="true">↗</span></span>
+</a>
 <a class="publication-entry" href="https://anhnd3.github.io/research-portfolio/articles/vision-transformers-facial-expression-recognition/">
-<span class="publication-index mono">2025 / RESEARCH STUDY · PUBLISHED 2026</span>
-<div class="publication-main"><h3>Vision Transformers for Facial Expression Recognition</h3><p>Comparing ViT-B/16, TransNeXt-B and ShuffViT-DFER on FER-2013—reported accuracy, model size, and webcam inference trade-offs.</p>
-<div class="publication-tags"><span class="tag">COMPUTER VISION</span><span class="tag">VISION TRANSFORMERS</span></div></div>
-<span class="publication-cta mono">READ ARTICLE <span aria-hidden="true">↗</span></span></a>
-<a class="publication-entry" href="https://anhnd3.github.io/research-portfolio/articles/gdem-graph-distillation-reproduction/">
-<span class="publication-index mono">DEC 2025 / REPRODUCTION STUDY</span>
-<div class="publication-main"><h3>Reproducing GDEM: Accuracy Is Not Transfer</h3><p>Graph Fourier foundations and eigenbasis matching; reproducing graph distillation accuracy across six datasets while examining cross-GNN transfer.</p>
-<div class="publication-tags"><span class="tag">GRAPH MACHINE LEARNING</span><span class="tag">GRAPH DISTILLATION</span></div></div>
-<span class="publication-cta mono">READ ARTICLE <span aria-hidden="true">↗</span></span></a>
-<a class="publication-entry" href="https://anhnd3.github.io/research-portfolio/articles/compact-domain-reranking/">
-<span class="publication-index mono">2026 / RESEARCH ARTICLE</span>
-<div class="publication-main"><h3>Compact Models for Domain-Specific Reranking</h3><p>Evaluating Qwen3-0.6B rerankers, grouped and listwise training objectives, and multi-label retrieval under matched conditions.</p>
-<div class="publication-tags"><span class="tag">MACHINE LEARNING</span><span class="tag">INFORMATION RETRIEVAL</span></div></div>
-<span class="publication-cta mono">READ ARTICLE <span aria-hidden="true">↗</span></span></a></div>
+  <span class="publication-index mono">SEP 2025 · EXPERIMENTAL STUDY</span>
+  <div class="publication-main"><h4>Vision Transformers for Facial Expression Recognition</h4>
+    <p>Comparing ViT-B/16, TransNeXt-B and ShuffViT-DFER on FER-2013—reported accuracy, model size, and webcam inference trade-offs.</p>
+    <div class="publication-tags"><span class="tag">COMPUTER VISION</span><span class="tag">VISION TRANSFORMERS</span></div>
+  </div>
+  <span class="publication-cta mono">READ ARTICLE <span aria-hidden="true">↗</span></span>
+</a></div>
+</section>
+  </div>
 </section>
 <section class="about-rail" id="about"><div class="wrapper about-grid"><div><div class="kicker">02 / ABOUT ME</div><h2>Curiosity, <br/>with a method.</h2></div><div><p>I'm Aiden, a software engineer interested in both the practical and research sides of artificial intelligence. I recently defended my master's thesis in AI, examining the validity of counterfactual explanations and how natural-language user feedback can be translated into structured constraints.</p><p>My questions often begin with something practical: Does a model improve on a simpler baseline? Under which conditions does an improvement hold? And what can an average benchmark score hide? I explore these questions across explainable and causal AI, information retrieval, compact models, and graph-based methods.</p><p>I learn from the literature, reproduce existing work, and use diagnostic experiments and matched comparisons where possible. Not every experiment isolates a cause, and not every result generalizes. This portfolio records what the evidence supports, what remains uncertain, and which questions are worth revisiting.</p><a class="arrow-link" href="https://github.com/anhnd3/research-portfolio" rel="noopener noreferrer" target="_blank">Browse research notes <span>↗</span></a></div></div></section>
 <section class="wrapper section-pad" id="policy"><div class="section-intro"><div><div class="kicker">03 / PUBLICATION POLICY</div><h2>Evidence before claims.</h2></div><p>How sources, experiments, claims and corrections are handled across different types of work.</p></div><div class="policy-grid"><div class="policy-item"><div class="kicker">01 / INTERPRETATION</div><h3>Scope every claim.</h3><p>Separate literature-based claims from original experiments. For measurements, disclose cohorts, controls, denominators and limitations; avoid unsupported causal attribution.</p></div><div class="policy-item"><div class="kicker">02 / REPRODUCIBILITY</div><h3>Keep the audit trail.</h3><p>Document methodology, references and revisions. A study appearing here does not mean its supporting dataset, model checkpoints or coursework source files are publicly released.</p></div><div class="policy-item"><div class="kicker">03 / CORRECTIONS</div><h3>Invite scrutiny.</h3><p>Corrections and technical questions belong in the <a href="https://github.com/anhnd3/research-portfolio" rel="noopener noreferrer" style="text-decoration:underline" target="_blank">GitHub repository</a>. No automatic open-source license or third-party reuse permission is implied.</p></div></div></section>
@@ -160,8 +209,10 @@ const menu=$('#menuBtn'); if(menu){menu.addEventListener('click',()=>{let x=$('#
 let savedFocus=null;const layer=$('#searchLayer'),inp=$('#siteSearch');const entries=[
 {title:'Research',description:'Published research articles',href:'/research-portfolio/#research'},
 {title:'Compact Models for Domain-Specific Reranking',description:'Qwen3 rerankers and multi-label retrieval',href:'https://anhnd3.github.io/research-portfolio/articles/compact-domain-reranking/'},
-{title:'Vision Transformers for Facial Expression Recognition',description:'FER-2013, compact CNN-ViT, accuracy and latency',href:'https://anhnd3.github.io/research-portfolio/articles/vision-transformers-facial-expression-recognition/'},
 {title:'Reproducing GDEM: Accuracy Is Not Transfer',description:'Graph Fourier, eigenbasis matching, graph distillation and cross-GNN transfer',href:'https://anhnd3.github.io/research-portfolio/articles/gdem-graph-distillation-reproduction/'},
+{title:'Vision Transformers for Facial Expression Recognition',description:'FER-2013, compact CNN-ViT, accuracy and latency',href:'https://anhnd3.github.io/research-portfolio/articles/vision-transformers-facial-expression-recognition/'},
+
+
 {title:'About Aiden',description:'A short introduction',href:'/research-portfolio/#about'},
 {title:'Publication policy',description:'Evidence and corrections',href:'/research-portfolio/#policy'}];
 function renderSearch(){let q=inp.value.toLowerCase().trim();let filtered=entries.filter(e=>(e.title+' '+e.description).toLowerCase().includes(q));$('#searchResults').innerHTML=filtered.length?filtered.map(e=>`<a href="${e.href}"><b>${e.title}</b><span>${e.description}</span></a>`).join(''):'<p>No matching sections. Try “reranking”, “research” or “evidence”.</p>';}

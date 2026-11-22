@@ -65,7 +65,12 @@ assert gdem_data and gdem_data.get("datePublished")=="2026-11-22" and gdem_data.
 assert gdem_data.get("author",{}).get("name")=="Aiden"
 
 home_text=(SITE/"index.html").read_text(encoding="utf-8")
-assert "03 publications" in home_text and VIT in home_text and GDEM in home_text, "Homepage publication index is stale"
+assert "03 PUBLISHED STUDIES" in home_text and VIT in home_text and GDEM in home_text, "Homepage publication index is stale"
+assert '<h3 id="research-year-2026">2026</h3>' in home_text and '<h3 id="research-year-2025">2025</h3>' in home_text, "Research year groups missing"
+assert home_text.index('id="research-year-2026"') < home_text.index('id="research-year-2025"'), "Research years must be newest first"
+assert home_text.index(f'class="publication-entry" href="{ARTICLE}"') < home_text.index(f'class="publication-entry" href="{GDEM}"') < home_text.index(f'class="publication-entry" href="{VIT}"'), "Research chronology is not reverse-ordered"
+home_schema_match=re.search(r'<script type="application/ld\+json">([\s\S]*?)</script>',home_text)
+assert home_schema_match and [i["url"] for i in next(n for n in json.loads(home_schema_match.group(1))["@graph"] if n["@type"]=="CollectionPage")["mainEntity"]["itemListElement"]]==[ARTICLE,GDEM,VIT], "Homepage structured data order differs from display"
 assert f'href="{BASE}" rel="canonical"' in home_text, "Homepage canonical missing"
 assert '<script type="application/ld+json">' in home_text, "Homepage JSON-LD missing"
 
