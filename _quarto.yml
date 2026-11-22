@@ -6,6 +6,7 @@ project:
     - "!index.qmd"
   resources:
     - index.html
+    - googlef3637ee6fdc70f85.html
     - articles/compact-domain-reranking/index.html
     - articles/vision-transformers-facial-expression-recognition/index.html
     - assets/research-reranking-og.png
