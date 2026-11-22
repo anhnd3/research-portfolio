@@ -4,10 +4,11 @@ Public source for [Aiden Research Portfolio](https://anhnd3.github.io/research-p
 
 ## Publication
 
-The supplementary pages use **Quarto (.qmd)**. The homepage and flagship article are **self-contained HTML publications** with responsive tables, inline SVG diagrams/charts, and local interactions, copied into `_site` by Quarto. No external JavaScript or CDN is needed for the article.
+The supplementary pages use **Quarto (.qmd)**. The homepage and two research articles are **self-contained HTML publications** with responsive tables, inline SVG diagrams/charts, and local interactions, copied into `_site` by Quarto. No external JavaScript or CDN is needed for the article.
 
 - Homepage: `index.html` (static resource; `index.qmd` is excluded from rendering)
-- Flagship article: `articles/compact-domain-reranking/index.html`
+- Reranking article: `articles/compact-domain-reranking/index.html`
+- Vision Transformer retrospective: `articles/vision-transformers-facial-expression-recognition/index.html`
 - Notes: `notes.qmd`
 - Theme: `styles.css`
 - Publishing: `.github/workflows/publish.yml`
@@ -41,9 +42,10 @@ See [Publication Policy](policy.qmd). No open content/code license is granted im
 
 ## Discovery and indexing
 
-The article is published as **v1.6**. The static HTML article is injected into Quarto's generated sitemap after rendering, because it is published as a resource rather than a `.qmd` page. SEO validation also checks the canonical URL, JSON-LD article metadata, social preview image, and `index,follow` status.
+The reranking article remains **v1.6**; the vision-transformer retrospective was added on **22 November 2026**. The static HTML article is injected into Quarto's generated sitemap after rendering, because it is published as a resource rather than a `.qmd` page. SEO validation also checks the canonical URL, JSON-LD article metadata, social preview image, and `index,follow` status.
 
-- Public article: https://anhnd3.github.io/research-portfolio/articles/compact-domain-reranking/
+- Reranking article: https://anhnd3.github.io/research-portfolio/articles/compact-domain-reranking/
+- Vision Transformer article: https://anhnd3.github.io/research-portfolio/articles/vision-transformers-facial-expression-recognition/
 - Sitemap: https://anhnd3.github.io/research-portfolio/sitemap.xml
 - Google Search Console: verify the URL-prefix property `https://anhnd3.github.io/research-portfolio/`, then inspect and submit the article URL.
 - Bing Webmaster Tools: verify the site and submit its sitemap when needed.

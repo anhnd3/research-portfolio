@@ -9,6 +9,7 @@ ROOT=Path(__file__).resolve().parents[1]
 SITE=ROOT/"_site"
 BASE="https://anhnd3.github.io/research-portfolio/"
 ARTICLE=BASE+"articles/compact-domain-reranking/"
+VIT=BASE+"articles/vision-transformers-facial-expression-recognition/"
 NS="http://www.sitemaps.org/schemas/sitemap/0.9"
 ET.register_namespace("",NS)
 def tag(name): return f"{{{NS}}}{name}"
@@ -18,7 +19,7 @@ image=SITE/"assets/research-reranking-og.png"
 assert page.is_file(), "Research article missing from _site"
 assert image.is_file() and image.stat().st_size>10000, "Social card missing from _site"
 text=page.read_text(encoding="utf-8")
-assert re.search(r"<title>Compact Models for Domain-Specific Reranking · Aiden · v[0-9]+\.[0-9]+</title>", text), "Versioned article title missing"
+assert "<title>Compact Models for Domain-Specific Reranking | Qwen3-0.6B | Aiden</title>" in text, "Reranking SEO title missing"
 assert '<meta name="robots" content="index,follow' in text
 assert f'<link rel="canonical" href="{ARTICLE}"' in text
 assert f'<meta property="og:image" content="{BASE}assets/research-reranking-og.png"' in text
@@ -31,6 +32,24 @@ assert data.get("datePublished")=="2026-11-02"
 from datetime import date
 modified = date.fromisoformat(data["dateModified"])
 assert modified >= date.fromisoformat(data["datePublished"]), "dateModified precedes datePublished"
+
+# The second publication is a standalone HTML resource, just like the reranking article.
+vit_page=SITE/"articles/vision-transformers-facial-expression-recognition/index.html"
+assert vit_page.is_file(), "ViT article missing from _site"
+vit_text=vit_page.read_text(encoding="utf-8")
+assert '<meta content="index,follow,max-image-preview:large" name="robots"' in vit_text, "ViT must be indexable"
+assert f'href="{VIT}" rel="canonical"' in vit_text, "ViT canonical missing"
+assert 'Vision Transformers for FER-2013:' in vit_text, "ViT SEO title missing"
+vit_match=re.search(r'<script type="application/ld\\+json">([\\s\\S]*?)</script>', vit_text)
+assert vit_match, "ViT JSON-LD missing"
+vit_data=json.loads(vit_match.group(1))
+assert vit_data.get("@type")=="Article" and vit_data.get("author",{}).get("name")=="Aiden", "ViT JSON-LD invalid"
+assert vit_data.get("datePublished")=="2026-11-22", "ViT publication date should not be research date"
+
+home_text=(SITE/"index.html").read_text(encoding="utf-8")
+assert "02 publications" in home_text and VIT in home_text, "Homepage publication index is stale"
+assert f'href="{BASE}" rel="canonical"' in home_text, "Homepage canonical missing"
+assert '<script type="application/ld+json">' in home_text, "Homepage JSON-LD missing"
 
 path=SITE/"sitemap.xml"
 if path.exists():
@@ -55,6 +74,7 @@ required={
     BASE+"about.html":"about.html",
     BASE+"policy.html":"policy.html",
     ARTICLE:"articles/compact-domain-reranking/index.html",
+    VIT:"articles/vision-transformers-facial-expression-recognition/index.html",
 }
 for url,relative in required.items():
     assert (SITE/relative).is_file(), f"Missing rendered page: {relative}"
@@ -62,14 +82,14 @@ for url,relative in required.items():
         item=ET.SubElement(root,tag("url"))
         ET.SubElement(item,tag("loc")).text=url
         entries[url.rstrip("/")]=[item]
-    if url==ARTICLE:
+    if url in (ARTICLE,VIT):
         item=entries[url.rstrip("/")][0]
         lastmod=item.find(tag("lastmod"))
         if lastmod is None: lastmod=ET.SubElement(item,tag("lastmod"))
-        lastmod.text=data["dateModified"]
+        lastmod.text=data["dateModified"] if url==ARTICLE else vit_data["dateModified"]
 
 locs=[e.text for e in root.findall(f'{tag("url")}/{tag("loc")}')]
 assert len(locs)==len(set(url.rstrip("/") for url in locs)), "Duplicate URLs"
 assert all(urlparse(url).hostname=="anhnd3.github.io" for url in locs), "Wrong sitemap host"
 path.write_bytes(ET.tostring(root,encoding="utf-8",xml_declaration=True))
-print(f"SEO verified: {len(locs)} URLs; article, metadata, JSON-LD, social card OK.")
+print(f"SEO verified: {len(locs)} URLs; homepage, two articles, canonicals and structured metadata OK.")

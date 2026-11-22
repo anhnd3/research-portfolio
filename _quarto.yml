@@ -7,6 +7,7 @@ project:
   resources:
     - index.html
     - articles/compact-domain-reranking/index.html
+    - articles/vision-transformers-facial-expression-recognition/index.html
     - assets/research-reranking-og.png
 
 website:
@@ -14,7 +15,7 @@ website:
   site-url: "https://anhnd3.github.io/research-portfolio/"
   image: assets/research-reranking-og.png
   image-alt: "Aiden research portfolio"
-  description: "Independent technical research in applied AI, evaluation and software engineering."
+  description: "Research on compact AI reranking, computer vision and explainable AI, with empirical comparisons and documented limitations."
   navbar:
     title: "Aiden"
     background: "#15221d"
