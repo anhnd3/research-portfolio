@@ -40,7 +40,7 @@ vit_text=vit_page.read_text(encoding="utf-8")
 assert '<meta content="index,follow,max-image-preview:large" name="robots"' in vit_text, "ViT must be indexable"
 assert f'href="{VIT}" rel="canonical"' in vit_text, "ViT canonical missing"
 assert 'Vision Transformers for FER-2013:' in vit_text, "ViT SEO title missing"
-vit_match=re.search(r'<script type="application/ld\\+json">([\\s\\S]*?)</script>', vit_text)
+vit_match=re.search(r'<script type="application/ld\+json">([\s\S]*?)</script>', vit_text)
 assert vit_match, "ViT JSON-LD missing"
 vit_data=json.loads(vit_match.group(1))
 assert vit_data.get("@type")=="Article" and vit_data.get("author",{}).get("name")=="Aiden", "ViT JSON-LD invalid"
