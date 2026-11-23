@@ -141,7 +141,7 @@ html,body{max-width:100%;overflow-x:clip}
 @media(prefers-reduced-motion:reduce){.research-year .publication-entry{transition:none}}
 </style><meta name="twitter:title" content="Aiden | Applied AI Research Portfolio"/>
 <meta name="twitter:description" content="Research notes on compact reranking, information retrieval, Vision Transformers and explainable AI."/>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://anhnd3.github.io/research-portfolio/#website","name":"Aiden Research Portfolio","url":"https://anhnd3.github.io/research-portfolio/","description":"Independent technical research in applied artificial intelligence: information retrieval, compact models, computer vision and explainable AI.","inLanguage":"en","publisher":{"@id":"https://anhnd3.github.io/research-portfolio/#aiden"}},{"@type":"Person","@id":"https://anhnd3.github.io/research-portfolio/#aiden","name":"Aiden","url":"https://anhnd3.github.io/research-portfolio/#about"},{"@type":"CollectionPage","@id":"https://anhnd3.github.io/research-portfolio/#research","name":"Selected Research","url":"https://anhnd3.github.io/research-portfolio/#research","isPartOf":{"@id":"https://anhnd3.github.io/research-portfolio/#website"},"mainEntity":{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"url":"https://anhnd3.github.io/research-portfolio/articles/compact-domain-reranking/"},{"@type":"ListItem","position":2,"url":"https://anhnd3.github.io/research-portfolio/articles/gdem-graph-distillation-reproduction/"},{"@type":"ListItem","position":3,"url":"https://anhnd3.github.io/research-portfolio/articles/vision-transformers-facial-expression-recognition/"}]}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://anhnd3.github.io/research-portfolio/#website","name":"Aiden Research Portfolio","url":"https://anhnd3.github.io/research-portfolio/","description":"Independent technical research in applied artificial intelligence: information retrieval, compact models, computer vision and explainable AI.","inLanguage":"en","publisher":{"@id":"https://anhnd3.github.io/research-portfolio/#aiden"}},{"@type":"Person","@id":"https://anhnd3.github.io/research-portfolio/#aiden","name":"Aiden","url":"https://anhnd3.github.io/research-portfolio/#about"},{"@type":"CollectionPage","@id":"https://anhnd3.github.io/research-portfolio/#research","name":"Selected Research","url":"https://anhnd3.github.io/research-portfolio/#research","isPartOf":{"@id":"https://anhnd3.github.io/research-portfolio/#website"},"mainEntity":{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"url":"https://anhnd3.github.io/research-portfolio/articles/compact-domain-reranking/"},{"@type":"ListItem","position":2,"url":"https://anhnd3.github.io/research-portfolio/articles/verified-counterfactual-explanations-ufce-ff/"},{"@type":"ListItem","position":3,"url":"https://anhnd3.github.io/research-portfolio/articles/gdem-graph-distillation-reproduction/"},{"@type":"ListItem","position":4,"url":"https://anhnd3.github.io/research-portfolio/articles/vision-transformers-facial-expression-recognition/"}]}}]}</script>
 </head><body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><div class="header-wrap"><a aria-label="Aiden Research Portfolio home" class="mark" href="/research-portfolio/"><span class="mark-symbol">A</span><span class="mark-name">AIDEN</span></a><nav aria-label="Primary navigation" class="header-nav" id="nav"><a data-nav="research" href="/research-portfolio/#research">Research</a><a data-nav="about" href="/research-portfolio/#about">About</a><a data-nav="policy" href="/research-portfolio/#policy">Publication policy</a></nav><div class="header-actions"><button aria-label="Search site" class="icon-btn" id="openSearch" title="Search (/)" type="button"><i aria-hidden="true" class="search-icon"></i></button><button aria-controls="nav" aria-expanded="false" aria-label="Toggle menu" class="icon-btn menu-btn" id="menuBtn" type="button"><span aria-hidden="true">☰</span></button></div></div></header>
@@ -160,17 +160,25 @@ html,body{max-width:100%;overflow-x:clip}
     <p>Research grouped by the year of study, newest first. Entries are published as the evidence becomes ready.</p>
   </div>
   <div class="research-index">
-    <div class="research-index-top mono"><span>RESEARCH ARCHIVE</span><span>03 PUBLISHED STUDIES</span></div>
+    <div class="research-index-top mono"><span>RESEARCH ARCHIVE</span><span>04 PUBLISHED STUDIES</span></div>
     <section class="research-year" aria-labelledby="research-year-2026">
   <header class="research-year-head">
     <h3 id="research-year-2026">2026</h3>
-    <span class="research-year-count mono">01 STUDY</span>
+    <span class="research-year-count mono">02 STUDIES</span>
   </header>
   <div class="research-year-items"><a class="publication-entry" href="https://anhnd3.github.io/research-portfolio/articles/compact-domain-reranking/">
   <span class="publication-index mono">RESEARCH 2026 · EMPIRICAL STUDY</span>
   <div class="publication-main"><h4>Compact Models for Domain-Specific Reranking</h4>
     <p>From E5 + Laya to Qwen and Prism rerankers: full-pipeline evaluation, training objectives and complete multi-label recovery.</p>
     <div class="publication-tags"><span class="tag">INFORMATION RETRIEVAL</span><span class="tag">COMPACT MODELS</span></div>
+  </div>
+  <span class="publication-cta mono">READ ARTICLE <span aria-hidden="true">↗</span></span>
+</a>
+<a class="publication-entry" href="https://anhnd3.github.io/research-portfolio/articles/verified-counterfactual-explanations-ufce-ff/">
+  <span class="publication-index mono">SEP 2026 · MASTER’S THESIS</span>
+  <div class="publication-main"><h4>UFCE Revisited: Validity Before Recommendation</h4>
+    <p>Reproducing user-feedback counterfactual explanations: UFCE-FF validity gates, natural-language handoff, multiclass evaluation and MI scaling.</p>
+    <div class="publication-tags"><span class="tag">EXPLAINABLE AI</span><span class="tag">COUNTERFACTUALS</span></div>
   </div>
   <span class="publication-cta mono">READ ARTICLE <span aria-hidden="true">↗</span></span>
 </a></div>
@@ -209,6 +217,7 @@ const menu=$('#menuBtn'); if(menu){menu.addEventListener('click',()=>{let x=$('#
 let savedFocus=null;const layer=$('#searchLayer'),inp=$('#siteSearch');const entries=[
 {title:'Research',description:'Published research articles',href:'/research-portfolio/#research'},
 {title:'Compact Models for Domain-Specific Reranking',description:'E5 + Laya, Qwen/Prism, learning-to-rank objectives and multi-label recovery',href:'https://anhnd3.github.io/research-portfolio/articles/compact-domain-reranking/'},
+{title:'UFCE Revisited: Validity Before Recommendation',description:'Sep 2026 thesis, counterfactual explanations, UFCE-FF validity, user feedback, multiclass and MI scaling',href:'https://anhnd3.github.io/research-portfolio/articles/verified-counterfactual-explanations-ufce-ff/'},
 {title:'Reproducing GDEM: Accuracy Is Not Transfer',description:'Graph Fourier, eigenbasis matching, graph distillation and cross-GNN transfer',href:'https://anhnd3.github.io/research-portfolio/articles/gdem-graph-distillation-reproduction/'},
 {title:'Vision Transformers for Facial Expression Recognition',description:'FER-2013, compact CNN-ViT, accuracy and latency',href:'https://anhnd3.github.io/research-portfolio/articles/vision-transformers-facial-expression-recognition/'},
 

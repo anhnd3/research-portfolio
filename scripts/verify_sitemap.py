@@ -11,6 +11,7 @@ BASE="https://anhnd3.github.io/research-portfolio/"
 ARTICLE=BASE+"articles/compact-domain-reranking/"
 VIT=BASE+"articles/vision-transformers-facial-expression-recognition/"
 GDEM=BASE+"articles/gdem-graph-distillation-reproduction/"
+UFCE=BASE+"articles/verified-counterfactual-explanations-ufce-ff/"
 NS="http://www.sitemaps.org/schemas/sitemap/0.9"
 ET.register_namespace("",NS)
 def tag(name): return f"{{{NS}}}{name}"
@@ -74,13 +75,38 @@ gdem_data=next((n for n in gdem_schema.get("@graph",[]) if n.get("@type")=="Arti
 assert gdem_data and gdem_data.get("datePublished")=="2026-11-22" and gdem_data.get("temporalCoverage")=="2025-12"
 assert gdem_data.get("author",{}).get("name")=="Aiden"
 
+
+# UFCE thesis retrospective: research timing and publication timing are separate.
+ufce_page=SITE/"articles/verified-counterfactual-explanations-ufce-ff/index.html"
+ufce_cover=SITE/"assets/research-ufce-og.png"
+assert ufce_page.is_file(), "UFCE retrospective not rendered"
+assert ufce_cover.is_file() and ufce_cover.stat().st_size>10000, "UFCE social card missing"
+ufce_text=ufce_page.read_text(encoding="utf-8")
+assert re.search(r'<meta\b(?=[^>]*name="robots")(?=[^>]*content="index,follow,max-image-preview:large")[^>]*>',ufce_text), "UFCE noindex"
+assert f'href="{UFCE}" rel="canonical"' in ufce_text, "UFCE canonical missing"
+assert f'content="{BASE}assets/research-ufce-og.png" property="og:image"' in ufce_text, "UFCE OG image missing"
+assert "CONTENT PREVIEW" not in ufce_text and "noindex" not in ufce_text, "UFCE draft markers"
+assert "Thesis defended: Sep 2026" in ufce_text, "UFCE defense period missing"
+assert "https://github.com/anhnd3/conversational-ufce" in ufce_text, "UFCE public code link missing"
+assert ufce_text.count('class="research-provenance"') == 1, "Duplicate UFCE provenance"
+assert len(re.findall(r'<li id="ref-\d+"', ufce_text))==34, "UFCE references incomplete"
+assert 'id="cf-animated-demo"' in ufce_text and 'id="appendix"' in ufce_text, "UFCE interactive demo/appendix missing"
+ufce_ids=set(re.findall(r'\bid="([^"]+)"',ufce_text))
+assert not ({a for a in re.findall(r'href="#([^"]+)"',ufce_text) if a not in ufce_ids}), "UFCE broken local anchors"
+ufce_match=re.search(r'<script type="application/ld\+json">([\s\S]*?)</script>',ufce_text)
+assert ufce_match, "UFCE ScholarlyArticle schema missing"
+ufce_data=json.loads(ufce_match.group(1))
+assert ufce_data.get("@type")=="ScholarlyArticle" and ufce_data.get("author",{}).get("name")=="Aiden"
+assert ufce_data.get("datePublished")=="2026-11-23", "Do not backdate publication to thesis defense month"
+assert ufce_data.get("dateModified")=="2026-11-23", "UFCE modified date missing"
+
 home_text=(SITE/"index.html").read_text(encoding="utf-8")
-assert "03 PUBLISHED STUDIES" in home_text and VIT in home_text and GDEM in home_text, "Homepage publication index is stale"
+assert "04 PUBLISHED STUDIES" in home_text and all(v in home_text for v in (VIT,GDEM,UFCE)), "Homepage publication index is stale"
 assert '<h3 id="research-year-2026">2026</h3>' in home_text and '<h3 id="research-year-2025">2025</h3>' in home_text, "Research year groups missing"
 assert home_text.index('id="research-year-2026"') < home_text.index('id="research-year-2025"'), "Research years must be newest first"
-assert home_text.index(f'class="publication-entry" href="{ARTICLE}"') < home_text.index(f'class="publication-entry" href="{GDEM}"') < home_text.index(f'class="publication-entry" href="{VIT}"'), "Research chronology is not reverse-ordered"
+assert home_text.index(f'class="publication-entry" href="{ARTICLE}"') < home_text.index(f'class="publication-entry" href="{UFCE}"') < home_text.index(f'class="publication-entry" href="{GDEM}"') < home_text.index(f'class="publication-entry" href="{VIT}"'), "Research chronology is not reverse-ordered"
 home_schema_match=re.search(r'<script type="application/ld\+json">([\s\S]*?)</script>',home_text)
-assert home_schema_match and [i["url"] for i in next(n for n in json.loads(home_schema_match.group(1))["@graph"] if n["@type"]=="CollectionPage")["mainEntity"]["itemListElement"]]==[ARTICLE,GDEM,VIT], "Homepage structured data order differs from display"
+assert home_schema_match and [i["url"] for i in next(n for n in json.loads(home_schema_match.group(1))["@graph"] if n["@type"]=="CollectionPage")["mainEntity"]["itemListElement"]]==[ARTICLE,UFCE,GDEM,VIT], "Homepage structured data order differs from display"
 assert f'href="{BASE}" rel="canonical"' in home_text, "Homepage canonical missing"
 assert '<script type="application/ld+json">' in home_text, "Homepage JSON-LD missing"
 
@@ -109,6 +135,7 @@ required={
     ARTICLE:"articles/compact-domain-reranking/index.html",
     VIT:"articles/vision-transformers-facial-expression-recognition/index.html",
     GDEM:"articles/gdem-graph-distillation-reproduction/index.html",
+    UFCE:"articles/verified-counterfactual-explanations-ufce-ff/index.html",
 }
 for url,relative in required.items():
     assert (SITE/relative).is_file(), f"Missing rendered page: {relative}"
@@ -116,14 +143,14 @@ for url,relative in required.items():
         item=ET.SubElement(root,tag("url"))
         ET.SubElement(item,tag("loc")).text=url
         entries[url.rstrip("/")]=[item]
-    if url in (ARTICLE,VIT,GDEM):
+    if url in (ARTICLE,VIT,GDEM,UFCE):
         item=entries[url.rstrip("/")][0]
         lastmod=item.find(tag("lastmod"))
         if lastmod is None: lastmod=ET.SubElement(item,tag("lastmod"))
-        lastmod.text=data["dateModified"] if url==ARTICLE else (vit_data["dateModified"] if url==VIT else gdem_data["dateModified"])
+        lastmod.text=data["dateModified"] if url==ARTICLE else (vit_data["dateModified"] if url==VIT else (gdem_data["dateModified"] if url==GDEM else ufce_data["dateModified"]))
 
 locs=[e.text for e in root.findall(f'{tag("url")}/{tag("loc")}')]
 assert len(locs)==len(set(url.rstrip("/") for url in locs)), "Duplicate URLs"
 assert all(urlparse(url).hostname=="anhnd3.github.io" for url in locs), "Wrong sitemap host"
 path.write_bytes(ET.tostring(root,encoding="utf-8",xml_declaration=True))
-print(f"SEO verified: {len(locs)} URLs; homepage, three articles, canonicals and social cards OK.")
+print(f"SEO verified: {len(locs)} URLs; homepage, four articles, canonicals and social cards OK.")

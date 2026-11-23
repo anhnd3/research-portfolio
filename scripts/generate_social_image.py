@@ -66,3 +66,31 @@ for k,(x,y) in enumerate(nodes):
     pen.ellipse((x-10,y-10,x+10,y+10),fill=c,outline="#fffdf2",width=2)
 im2.save(OUTPUT_GDEM,"PNG",optimize=True)
 print(f"Social image: {OUTPUT_GDEM} ({OUTPUT_GDEM.stat().st_size} bytes)")
+
+
+# UFCE thesis retrospective social preview — verified target-class transition.
+OUTPUT_UFCE = ROOT/"assets"/"research-ufce-og.png"
+im3=Image.new("RGB",(WIDTH,HEIGHT))
+upx=im3.load()
+for y in range(HEIGHT):
+    for x in range(WIDTH):
+        v=0.48*x/WIDTH+0.52*y/HEIGHT
+        upx[x,y]=(int(15+16*v),int(33+30*v),int(25+25*v))
+p=ImageDraw.Draw(im3)
+p.rounded_rectangle((65,56,366,103),radius=21,fill="#355d45")
+p.text((86,67),"AIDEN / RESEARCH",fill="#eef5d8",font=font(20,True))
+p.text((65,161),"UFCE Revisited",fill="#f9f7eb",font=font(66,True))
+p.text((65,249),"Validity Before",fill="#d8edac",font=font(62,True))
+p.text((65,332),"Recommendation",fill="#d8edac",font=font(61,True))
+p.rounded_rectangle((65,439,815,444),radius=2,fill="#a9c79b")
+p.text((65,465),"Counterfactual Validity  |  User Feedback  |  Handoff",fill="#d3e4d1",font=font(19))
+p.text((65,551),"THESIS DEFENDED SEP 2026   /   5 DATASETS",fill="#c9dba9",font=font(19,True))
+# Conceptual candidates: the accepted state is reached only after verification.
+for i,(x,y) in enumerate([(966,177),(1088,177),(966,290),(1088,290)]):
+    fill=("#e9b982","#e9b982","#e9b982","#b9e798")[i]
+    p.ellipse((x-18,y-18,x+18,y+18),fill=fill,outline="#f5f6ec",width=2)
+    p.line((x+19,y,x+43,y),fill="#b8d1b8",width=3)
+p.rounded_rectangle((917,375,1144,433),radius=12,fill="#224d35",outline="#719978",width=2)
+p.text((942,389),"f(x') = target",fill="#d8edac",font=font(20,True))
+im3.save(OUTPUT_UFCE,"PNG",optimize=True)
+print(f"Social image: {OUTPUT_UFCE} ({OUTPUT_UFCE.stat().st_size} bytes)")

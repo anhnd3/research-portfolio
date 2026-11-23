@@ -14,6 +14,13 @@ Research is organized by **when the work was conducted**, newest first. Publicat
   <a href="articles/compact-domain-reranking/">Open article →</a>
 </div>
 
+<div class="publication-card">
+  <div class="meta">MASTER’S THESIS RETROSPECTIVE · DEFENDED SEP 2026 · PUBLISHED NOV 2026</div>
+  <h3><a href="articles/verified-counterfactual-explanations-ufce-ff/">UFCE Revisited: Validity Before Recommendation</a></h3>
+  <p>UFCE reproduction, flip-filtered counterfactual validity, natural-language handoff and appendix evaluations of multiclass recourse and MI at scale.</p>
+  <a href="articles/verified-counterfactual-explanations-ufce-ff/">Open article →</a>
+</div>
+
 ## 2025
 
 <div class="publication-card">
