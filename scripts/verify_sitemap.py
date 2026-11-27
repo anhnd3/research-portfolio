@@ -110,6 +110,19 @@ assert home_schema_match and [i["url"] for i in next(n for n in json.loads(home_
 assert f'href="{BASE}" rel="canonical"' in home_text, "Homepage canonical missing"
 assert '<script type="application/ld+json">' in home_text, "Homepage JSON-LD missing"
 
+# Author identity: one Person entity, defined on the About page and referenced everywhere.
+PERSON=BASE+"about/#person"
+about_text=(SITE/"about/index.html").read_text(encoding="utf-8")
+assert f'href="{BASE}about/" rel="canonical"' in about_text, "About canonical missing"
+about_graph=json.loads(re.search(r'<script type="application/ld\+json">([\s\S]*?)</script>',about_text).group(1))["@graph"]
+person=next(n for n in about_graph if n.get("@type")=="Person")
+assert person["@id"]==PERSON and "https://www.linkedin.com/in/anhnd8/" in person["sameAs"], "About Person/sameAs missing"
+for label,schema in (("reranking",data),("ViT",vit_data),("GDEM",gdem_data),("UFCE",ufce_data)):
+    assert schema.get("author",{}).get("@id")==PERSON, f"{label} author does not reference the About Person"
+for page_text in (text,vit_text,gdem_text,ufce_text):
+    assert 'class="in-brief"' in page_text and 'class="related-research"' in page_text, "Article summary or related links missing"
+assert (SITE/"llms.txt").is_file(), "llms.txt missing"
+
 path=SITE/"sitemap.xml"
 if path.exists():
     tree=ET.parse(path)
@@ -129,8 +142,7 @@ for group in entries.values():
 required={
     BASE:"index.html",
     BASE+"articles.html":"articles.html",
-    BASE+"notes.html":"notes.html",
-    BASE+"about.html":"about.html",
+    BASE+"about/":"about/index.html",
     BASE+"policy.html":"policy.html",
     ARTICLE:"articles/compact-domain-reranking/index.html",
     VIT:"articles/vision-transformers-facial-expression-recognition/index.html",

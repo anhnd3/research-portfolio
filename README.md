@@ -11,7 +11,8 @@ The supplementary pages use **Quarto (.qmd)**. The homepage and four research ar
 - Vision Transformer retrospective: `articles/vision-transformers-facial-expression-recognition/index.html`
 - GDEM reproduction study: `articles/gdem-graph-distillation-reproduction/index.html`
 - UFCE thesis retrospective (defended September 2026): `articles/verified-counterfactual-explanations-ufce-ff/index.html`
-- Notes: `notes.qmd`
+- About page: `about/index.html` (static resource, ProfilePage + Person schema)
+- AI/LLM discovery: `llms.txt`; Atom feed built by `scripts/build_discovery.py`; IndexNow ping by `scripts/indexnow.py` after deploy
 - Theme: `styles.css`
 - Publishing: `.github/workflows/publish.yml`
 - SEO: `scripts/verify_sitemap.py`, `scripts/generate_social_image.py`
