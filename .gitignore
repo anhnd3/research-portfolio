@@ -8,3 +8,6 @@ _freeze/
 .env.*
 __pycache__/
 *.pyc
+
+# Social cards are generated at build time by scripts/generate_social_image.py
+assets/research-*-og.png
