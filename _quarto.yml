@@ -33,7 +33,7 @@ website:
       - text: "Research"
         href: index.html#research
       - text: "About"
-        href: about/index.html
+        href: "https://anhnd3.github.io/"
       - text: "Publication policy"
         href: index.html#policy
     right:
