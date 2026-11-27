@@ -14,6 +14,10 @@ project:
     - assets/research-reranking-og.png
     - assets/research-gdem-og.png
     - assets/research-ufce-og.png
+    - assets/research-vit-og.png
+    - about/index.html
+    - llms.txt
+    - 1f9f8234dd9f1af7f9c9942ea0399497.txt
 
 website:
   title: "Aiden | Research Portfolio"
@@ -29,7 +33,7 @@ website:
       - text: "Research"
         href: index.html#research
       - text: "About"
-        href: index.html#about
+        href: about/index.html
       - text: "Publication policy"
         href: index.html#policy
     right:

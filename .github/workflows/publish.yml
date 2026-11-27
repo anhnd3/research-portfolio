@@ -27,6 +27,8 @@ jobs:
         run: quarto render
       - name: Validate SEO metadata and sitemap
         run: python scripts/verify_sitemap.py
+      - name: Build Atom feed
+        run: python scripts/build_discovery.py
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -45,3 +47,8 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Checkout (for IndexNow key)
+        uses: actions/checkout@v4
+      - name: Notify Bing and other IndexNow search engines
+        continue-on-error: true
+        run: python3 scripts/indexnow.py

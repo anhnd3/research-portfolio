@@ -94,3 +94,29 @@ p.rounded_rectangle((917,375,1144,433),radius=12,fill="#224d35",outline="#719978
 p.text((942,389),"f(x') = target",fill="#d8edac",font=font(20,True))
 im3.save(OUTPUT_UFCE,"PNG",optimize=True)
 print(f"Social image: {OUTPUT_UFCE} ({OUTPUT_UFCE.stat().st_size} bytes)")
+
+
+# Vision Transformer / FER-2013 retrospective social preview — accuracy versus model size.
+OUTPUT_VIT = ROOT/"assets"/"research-vit-og.png"
+im4=Image.new("RGB",(WIDTH,HEIGHT))
+vpx=im4.load()
+for y in range(HEIGHT):
+    for x in range(WIDTH):
+        v=0.6*x/WIDTH+0.4*y/HEIGHT
+        vpx[x,y]=(int(21+14*v),int(34+22*v),int(29+20*v))
+q=ImageDraw.Draw(im4)
+q.rounded_rectangle((65,56,355,103),radius=21,fill="#3a5a4a")
+q.text((86,67),"AIDEN / RESEARCH",fill="#eef5d8",font=font(20,True))
+q.text((65,161),"Vision Transformers",fill="#f9f7eb",font=font(60,True))
+q.text((65,247),"for Facial Expression",fill="#d8edac",font=font(54,True))
+q.text((65,323),"Recognition",fill="#d8edac",font=font(60,True))
+q.rounded_rectangle((65,439,780,444),radius=2,fill="#a9c79b")
+q.text((65,465),"FER-2013  |  Accuracy  |  Model Size  |  Latency",fill="#d3e4d1",font=font(20))
+q.text((65,551),"3 ARCHITECTURES   /   RESEARCH 2025",fill="#c9dba9",font=font(19,True))
+# Bars: parameter count (millions), small hybrid versus two large transformers.
+for x,params,label,fill in [(930,6.22,"6.2M","#d8edac"),(1010,88.96,"89M","#7f9f8a"),(1090,85.80,"86M","#7f9f8a")]:
+    h=int(20+params*2.6)
+    q.rounded_rectangle((x,470-h,x+46,470),radius=6,fill=fill)
+    q.text((x,482),label,fill="#e8efe3",font=font(16,True))
+im4.save(OUTPUT_VIT,"PNG",optimize=True)
+print(f"Social image: {OUTPUT_VIT} ({OUTPUT_VIT.stat().st_size} bytes)")

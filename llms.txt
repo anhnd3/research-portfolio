@@ -1,0 +1,23 @@
+# Aiden Research Portfolio
+
+> Independent applied AI research by Aiden (Nguyễn Duy Anh), a software engineer at Zalopay (VNG) with a Master of Artificial Intelligence from the University of Science, VNU-HCM. Each article is an empirical study or retrospective that separates literature claims, measured results and interpretation, and states its limitations.
+
+All content is in English. Articles are long-form HTML with references (DOIs/arXiv) and links to source code where available. Publication dates are separate from research periods.
+
+## Research articles
+
+- [Compact Models for Domain-Specific Reranking](https://anhnd3.github.io/research-portfolio/articles/compact-domain-reranking/): Fine-tuning Qwen3-Reranker-0.6B for a domain catalog. On 594 queries, Complete@5 rose from 78.11% (E5 + Laya) to 82.66%; query-grouped training beat pointwise BCE; multi-item queries remain the hard case.
+- [UFCE Revisited: Validity Before Recommendation](https://anhnd3.github.io/research-portfolio/articles/verified-counterfactual-explanations-ufce-ff/): Master's thesis (defended Sep 2026) on counterfactual explanations. Reproduces UFCE on five datasets, moves the validity check before candidate selection (UFCE-FF), and hands natural-language requests to a deterministic verifier.
+- [Reproducing GDEM: Accuracy Is Not Transfer](https://anhnd3.github.io/research-portfolio/articles/gdem-graph-distillation-reproduction/): Reproduction of Graph Distillation with Eigenbasis Matching (ICML 2024). Accuracy matched the paper within 0.34 pp on average across 17 comparisons; transfer to other GNN backbones was weaker.
+- [Vision Transformers for Facial Expression Recognition](https://anhnd3.github.io/research-portfolio/articles/vision-transformers-facial-expression-recognition/): ViT-B/16, TransNeXt-B and ShuffViT-DFER on FER-2013. The 6.22M-parameter hybrid ShuffViT-DFER led on both accuracy (67.07%) and latency.
+
+## About
+
+- [About Aiden](https://anhnd3.github.io/research-portfolio/about/): Profile, talks and links (LinkedIn, GitHub).
+- [Publication policy](https://anhnd3.github.io/research-portfolio/policy.html): How evidence, reproducibility and corrections are handled.
+
+## Optional
+
+- [Atom feed](https://anhnd3.github.io/research-portfolio/feed.xml)
+- [Sitemap](https://anhnd3.github.io/research-portfolio/sitemap.xml)
+- [Source repository](https://github.com/anhnd3/research-portfolio)
