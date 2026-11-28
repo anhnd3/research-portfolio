@@ -13,7 +13,7 @@ All content is in English. Articles are long-form HTML with references (DOIs/arX
 
 ## About
 
-- [About Aiden](https://anhnd3.github.io/research-portfolio/about/): Profile, talks and links (LinkedIn, GitHub).
+- [About Aiden](https://anhnd3.github.io/): Profile, talks and links (LinkedIn, GitHub).
 - [Publication policy](https://anhnd3.github.io/research-portfolio/policy.html): How evidence, reproducibility and corrections are handled.
 
 ## Optional

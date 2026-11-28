@@ -10,7 +10,7 @@ import re
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "_site"
 BASE = "https://anhnd3.github.io/research-portfolio/"
-ABOUT = BASE + "about/"
+ABOUT = "https://anhnd3.github.io/"
 
 entries = []
 for page in sorted((SITE / "articles").glob("*/index.html")):
